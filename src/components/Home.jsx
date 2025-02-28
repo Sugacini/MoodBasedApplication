@@ -1,7 +1,7 @@
 import "../Home.css"
 import { useRef, useState, useEffect } from "react";
 import * as faceapi from "face-api.js";
-import { Link, useNavigate , useLocation} from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import Header from "./Header";
 let count = 0;
 
@@ -21,6 +21,7 @@ function Home() {
     const canvasDetect = useRef();
     const detectMessage = useRef();
     const [detectClicked, setDetectClicked] = useState(false);
+    const [stream, setStream] = useState(null);
     let localStream;
 
     async function uploadFiles() {
@@ -49,20 +50,22 @@ function Home() {
         console.log("Enter the async")
         try {
             localStream = await (navigator.mediaDevices.getUserMedia({ video: true }));
+            console.log(localStream);
             if (srcVal.current) {
                 srcVal.current.srcObject = localStream;
+               
             }
         }
         catch (err) {
             console.error("Error accessing webcam:", err);
         }
     }
-        getUserMediaStream();
-    
+    getUserMediaStream();
 
-    // if (srcVal.current?.srcObject) {
-        
-    // }
+    useEffect(() => {
+        setStream(localStream)
+    }, [])
+
 
     function detectHandler() {
         console.log("Enter it detecthandler")
@@ -136,16 +139,16 @@ function Home() {
         }, 2000)
 
         setTimeout(() => {
-            const tracks = srcVal.current.srcObject.getTracks();
-            tracks.forEach(track => track.stop());
-            navigate("/features", { state: { findEmo: (findEmotion.current) , idOfUser: userData.idOfUser} });
+            console.log(localStream.getTracks());
+                localStream.getTracks().forEach(track => track.stop());
+                navigate("/features", { state: { findEmo: (findEmotion.current), idOfUser: userData.idOfUser } });
         }, 4500);
 
     }
     return (
 
         <>
-        <Header userUniqueId={userId} setUserId={null} loginBtn={null} backTo={'landingPage'} obj={{state: {idOfUser: userId}}} className="BookHeader"/>
+            <Header userUniqueId={userId} setUserId={null} loginBtn={null} backTo={'landingPage'} obj={{ state: { idOfUser: userId } }} className="BookHeader" />
             <div className="homeOuter">
                 <div className="detectHeading">CAPTURING EXPRESSION</div>
                 <div className="videoImg">

@@ -21,6 +21,8 @@ function ChatBot() {
       console.log('asked');   
       botChat(messages[messages.length-1]);
     }
+    const apiKey = 'AIzaSyBPeW2Q96M523ObMuApv4PSCm6T9Hp3Lus'; 
+    const apiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent';
     async function botChat(prompt) {
       try {
   
@@ -29,36 +31,25 @@ function ChatBot() {
         console.log('waiting for response');
         
         
-        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-          method: "POST",
-          headers: {
-            "Authorization": "Bearer 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",
-            // "HTTP-Referer": "<YOUR_SITE_URL>",
-            "X-Title": "UnarvAI", 
-            "Content-Type": "application/json"
+        var response = await fetch (apiUrl+'?key='+apiKey,{
+          method:'POST',
+          headers:{
+            'Content-type':'application/json',
           },
           body: JSON.stringify({
-            "model": "deepseek/deepseek-r1:free",
-            "messages": [
-              {
-                "role": "user",
-                "content": prompt
-              }
-            ]
+            contents : [{ parts : [{ text : prompt}] }]
           })
         });
-  
+        
         if(response.ok){
-          const responseData = await response.json();
-          console.log(responseData);
-          
-          setMessage([...messages,responseData.choices[0].message.content]);  
-          console.log(responseData.choices[0].message.content);
+          var data = await response.json();
+          // setReply(data.candidates[0].content.parts[0].text)
+          setMessage([...messages,data.candidates[0].content.parts[0].text]);  
+          console.log(data.candidates[0].content.parts[0].text);
+
         }
       } catch (error) {
         console.log(error);
-        
-      }
     }
 
     useEffect(()=>{
@@ -85,6 +76,7 @@ return (
     </div>
     
   )
+}
 }
 
 export default ChatBot;

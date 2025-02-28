@@ -111,7 +111,7 @@ function Login({setLog, setWay, wayToLogin, setUserId, userUniqueId, setLogClick
             <h3 className="logHeading">Login</h3>
             <div className="inputParent">
                 {userIdErr?<p className="errMsg">{userIdErr}</p>:<p className="opac">.</p>}
-                <input className="inputBoxes" type="text" name="uerId" ref={userId} required/>
+                <input className="inputBoxes" type="text" name="uerId" ref={userId} required autoComplete="off"/>
                 <label htmlFor="uerId" className="labels">UserId</label>
             </div>
             <div className="inputParent">
@@ -127,12 +127,12 @@ function Login({setLog, setWay, wayToLogin, setUserId, userUniqueId, setLogClick
         <form action="" className="signUpForm" onSubmit={sigUpHandler}>
                 <h3 className="logHeading">Sign up</h3>
                 <div className="inputParent">
-                    <input className="inputBoxes" type="text" name="userName" ref={name} required/>
+                    <input className="inputBoxes" type="text" name="userName" ref={name} required autoComplete="off"/>
                     <label htmlFor="userName" className="nameLabel">Name</label>
                 </div>
                 <div className="inputParent">
                     {userIdErr?<p className="errMsg">{userIdErr}</p>:<p className="opac">.</p>}
-                    <input className="inputBoxes" type="text" name="uerId" ref={userId} required/>
+                    <input className="inputBoxes" type="text" name="uerId" ref={userId} required autoComplete="off"/>
                     <label htmlFor="uerId" className="labels">UserId</label>
                 </div>
                 <div className="inputParent">

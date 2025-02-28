@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Header from "./Header";
+import { useRef } from "react";
 
 async function bookDetails(data1) {
     let response = await fetch("http://localhost:3000/getBookById", {
@@ -29,10 +30,16 @@ function SingleBook() {
     const userId = data.idOfUser
     console.log(data);
     const [isBookDetails, setBookDetails] = useState(null);
+    const descriptionOfBook = useRef();
 
     useEffect(() => {
         bookDetails(data1).then(res => setBookDetails(res));
     },[])
+
+    setTimeout(() => {
+        console.log((isBookDetails));
+        descriptionOfBook.current.innerHTML = isBookDetails.volumeInfo.description;
+    }, 100)
     console.log("Enter");
     return (
         <div className="singleBookOuter">
@@ -63,7 +70,7 @@ function SingleBook() {
 
                     {(isBookDetails.volumeInfo.description) ? <div className="bookDesc">
                         <p className="publish">Description</p>
-                        <p className="bookDescription">{isBookDetails.volumeInfo.description}</p>
+                        <div className="bookDescription" ref={descriptionOfBook}></div>
                     </div> : <p></p>}
 
                     <div className="linkOfBook">

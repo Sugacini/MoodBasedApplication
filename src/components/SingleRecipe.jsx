@@ -4,6 +4,7 @@ import { FaLeftLong } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from "./Header";
+import { useRef } from "react";
 
 async function takeFood(idOfFood) {
     try {
@@ -32,6 +33,7 @@ function SingleRecipe() {
     console.log(data.emo1)
     const userId = data.idOfUser;
     const ingreData = Array.from({ length: 12 })
+    const foodDescription = useRef();
 
     const navigate = useNavigate();
     const [isSingleFood, setSingleFood] = useState(null);
@@ -72,7 +74,12 @@ function SingleRecipe() {
                     </div>
                     <div className="instruction">
                         <p className="instruHead">Instructions</p>
-                        <p>{isSingleFood.meals[0].strInstructions}</p>
+                        <ol ref={foodDescription}>{
+                            ((isSingleFood.meals[0].strInstructions).split("\n")).map((splitVal, index) => {
+                                return <li>{splitVal}</li>
+                            })
+                        }
+                        </ol>
                     </div>
                 </div>
                 : <div class="loader">

@@ -26,6 +26,7 @@ function Story(){
         let response = await fetch("https://shortstories-api.onrender.com/");
         let res = response.json();
         let res2 = await res.then();
+        console.log(res2);
         setTitle(res2.title)
         setStory(res2.story);
         setAuthor(res2.author);

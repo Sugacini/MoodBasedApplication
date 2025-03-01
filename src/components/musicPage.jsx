@@ -107,7 +107,7 @@ function MusicPage() {
           <div className={addElement ? 'musicBottomSec' : 'mainsBottomSec'}>
 
             {!addElement ? (data!=null)? data.map((album, idx) =>      
-              (idx < 9) ? <AlbumBox name={album.data.name} key={idx} idx={idx} imgUrl={album.data.image[2].url} setState={setState} setAlbum={setAlbum} description={album.data.description}></AlbumBox> :null):<div class="loader">
+              (idx < 9) ? <AlbumBox name={album.data.name} key={idx} idx={idx} imgUrl={album.data.image[2].url} setState={setState} setAlbum={setAlbum} description={album.data.description}></AlbumBox> :null):<div className="loader">
               <span></span>
               <span></span>
               <span></span>

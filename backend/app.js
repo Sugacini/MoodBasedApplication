@@ -7,7 +7,7 @@ const cors=require("cors");
 const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "suga@123",
+    password: "your_password1",
     database: "Emotions",
 });
 
@@ -36,7 +36,7 @@ app.use(express.static(pubDir));
 
 
 app.use(cors({
-    origin: "http://localhost:5173", 
+    origin: "http://localhost:5174", 
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true, 
 }));
@@ -236,7 +236,7 @@ app.put("/addJournal", (req, res) => {
                 console.log(err);
             }
             else{
-                connection.query("create table if not exists Journals (journalId int primary key auto_increment, userIdNum int, content text, date DATE, time varchar(8), foreign key (userIdNum) references UnarvAIUsers(IdNumber) on delete cascade)", (error, responseFromDb) => {
+                connection.query("create table if not exists Journals (journalId int primary key auto_increment, userIdNum int, content text, date DATE, time varchar(8), foreign key (userIdNum) references UnarvAIUsers(IdNumber) on delete cascade)", (error, response) => {
                     if(error){
                         console.log(error);
                     }
@@ -359,6 +359,44 @@ app.post("/getBookById", async (req, res) => {
     }
     catch(err){
         console.error(err);
+    }
+})
+
+app.put("/userEntry",(req,res)=>{
+    console.log(req.body);
+    let {userId, date, time, mood} = req.body;
+    var userNum;
+    console.log("userId : ", userId)
+    try{
+        connection.query("select IdNumber from UnarvAIUsers where userId = ?", [userId], (err, result) => {
+            if(err){
+                console.log(err);
+            }
+            else{
+                connection.query("create table if not exists UserLogs (entryId int primary key auto_increment, userNumId int, mood varchar(15), date DATE, time varchar(8), foreign key (userNumId) references UnarvAIUsers(IdNumber) on delete cascade)", (error, response) => {
+                    if(error){
+                        console.log(error);
+                    }
+                    else{
+                        userNum = result[0].IdNumber;
+                        connection.query("insert into UserLogs (userNumId, mood, date, time) values (?,?,?,?)", [userNum, mood, date, time], (error, results) => {
+                            if(error){
+                                console.log(error);
+                            }
+                            else{
+                                res.status = 200;
+
+                                res.send('added');
+                            }
+                        })                            
+                    }
+                })   
+                          
+            }
+        })
+    }
+    catch(err){
+        console.log("Error", err);
     }
 })
 

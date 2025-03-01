@@ -8,21 +8,21 @@ import ChatBot from "./ChatBot";
 import { FaRobot, FaMusic, FaBook, FaQuoteRight, FaUtensils, FaClapperboard, FaGamepad, FaBookOpen, FaFilePen, FaLeftLong } from "react-icons/fa6";
 import { useEffect } from "react";
 
-let count = 0;
+let firstFeatureNotClicked = true;
 
 function Features() {
     const [emoImg, setEmoImg] = useState("");
     const [userUniqueId, setUserId] = useState(null);
-    const [featureClicked, setFeatureClicked] = useState(false);
+    // const [firstFeatureClicked, setFeatureClicked] = useState(false);
     const setImg = useRef();
     const location = useLocation();
     const data = location.state;
-    console.log(data);
+    // console.log(data);
     var uId = data.idOfUser;
     const data1 = (JSON.stringify(data.findEmo));
     const finalEmo = data1.slice(1, data1.length - 1);
     const finalEmo1 = finalEmo.toUpperCase();
-    console.log(JSON.stringify(data.findEmo), finalEmo);
+    // console.log(JSON.stringify(data.findEmo), finalEmo);
 
     const loginBtn = useRef();
 
@@ -31,22 +31,57 @@ function Features() {
     // if (count == 0) {
         useEffect(() => {
             setImg.current = finalEmo + ".png";
-            console.log(setImg.current)
+            // console.log(setImg.current)
             setEmoImg(finalEmo + ".png");
         }, [])
-        
     //     count++;
     // }
+
+    async function firstClickOfFeature(){
+        if (userUniqueId!=null && firstFeatureNotClicked) {
+            firstFeatureNotClicked=false;
+            let now = new Date();
+            let dateAndTime = (now.toLocaleString()).split(",");
+            let date = dateAndTime[0];
+            date = date.slice(6)+"/"+date.slice(3,5)+"/"+date.slice(0,2);
+            let time = dateAndTime[1];
+            console.log('%cfirst click', 'color: red; font-size: 30px;');
+
+            await fetch("http://localhost:3000/userEntry",{
+                method:'PUT',
+                headers:{
+                    "Content-type":"application/json"
+                },
+                body:JSON.stringify({
+                    userId:userUniqueId,
+                    date:date,
+                    time:time.trim(),
+                    mood:finalEmo
+                })
+            })
+        }
+        else{
+            console.log('%cNot the first click', 'color: green; font-size: 30px;');
+            // console.log('Not the first click');
+            
+        }
+    }
 
 
     function quotesHandler() {
         //to allow only if they logged in
+
+        firstClickOfFeature();
+
+
 
         (userUniqueId == null) ? loginBtn.current.click() : navigate("/quotes", { state: { emo: (finalEmo), idOfUser: userUniqueId } });
     }
 
     function journelHandler() {
         // setFeatureClicked(true);
+        firstClickOfFeature();
+
         (userUniqueId == null) ? loginBtn.current.click() : navigate("/journel", { state: { emo: (finalEmo), idOfUser: userUniqueId } });
 
         // navigate("/journel", { state: { emo: (finalEmo), idOfUser: userUniqueId } });
@@ -58,6 +93,8 @@ function Features() {
 
     function musicHandler() {
         // setFeatureClicked(true);
+        firstClickOfFeature();
+
         (userUniqueId == null) ? loginBtn.current.click() : navigate("/music", { state: { emo: (finalEmo), idOfUser: userUniqueId } });
 
         // navigate("/music", { state: { emo: (finalEmo), idOfUser: userUniqueId } });
@@ -65,6 +102,8 @@ function Features() {
 
     function chatBotHandler() {
         // setFeatureClicked(true);
+        firstClickOfFeature();
+
         (userUniqueId == null) ? loginBtn.current.click() : navigate("/chatBot", { state: { emo1: (finalEmo), idOfUser: userUniqueId } });
 
         // navigate("/chatBot", { state: { emo1: (finalEmo) , idOfUser: userUniqueId } });
@@ -72,17 +111,23 @@ function Features() {
 
     function foodHandler() {
         // setFeatureClicked(true);
+        firstClickOfFeature();
+
         (userUniqueId == null) ? loginBtn.current.click() : navigate("/food", { state: { emo: (finalEmo), idOfUser: userUniqueId } });
 
         // navigate("/food", { state: { emo: (finalEmo) , idOfUser: userUniqueId } });
     }
 
     function bookHander() {
-        console.log(finalEmo);
+        // console.log(finalEmo);
+        firstClickOfFeature();
+
         (userUniqueId == null) ? loginBtn.current.click() : navigate("/book", { state: { emo: (finalEmo), idOfUser: userUniqueId } });
     }
 
     function gameHandler() {
+        firstClickOfFeature();
+
         (userUniqueId == null) ? loginBtn.current.click() : navigate("/game", { state: { emo: (finalEmo), idOfUser: userUniqueId } });
     }
 
@@ -92,12 +137,12 @@ function Features() {
 
     useEffect(() => { uId ? setUserId(uId) : null }, [])
 
-    console.log(setImg.current, emoImg, data1);
+    // console.log(setImg.current, emoImg, data1);
     return (
 
         <div className={style.featureOuter} >
             <div className={style.featureHead}>
-                {console.log('userUniqueId : ', userUniqueId)}
+                {/* {console.log('userUniqueId : ', userUniqueId)} */}
                 <Header userUniqueId={userUniqueId} setUserId={setUserId} loginBtn={loginBtn} backTo={"home"} obj={{ state: { emo: (finalEmo), idOfUser: userUniqueId } }} />
                 {/* <div className={style.backIcon} onClick={() => {navigate("/home")}}>
                     <FaLeftLong className={style.leftIcon}></FaLeftLong>

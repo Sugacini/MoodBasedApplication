@@ -400,6 +400,19 @@ app.put("/userEntry",(req,res)=>{
     }
 })
 
+app.get("/todaysLog",(req,res)=>{
+    connection.query("insert into UserLogs (userNumId, mood, date, time) values (?,?,?,?)", [userNum, mood, date, time], (error, results) => {
+        if(error){
+            console.log(error);
+        }
+        else{
+            res.status = 200;
+
+            res.send('added');
+        }
+    })
+})
+
 app.listen(3000, () => {
     console.log("Server Connected port 3000");
 })

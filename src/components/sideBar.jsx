@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 function SideBar() {
     const navigate = useNavigate();
     return (
-        <div className="sideBar" onClick={() => {navigate("/")}}>
-            {/* <p>Today's mood</p>
+        <div className="sideBar">
+            <p onClick={() => {navigate("/todaysMood")}}>Today's mood</p>
 
-            <p>This week</p>
+            {/* <p>This week</p>
 
             <p>Change userId</p> */}
 
-            <p className="logoutBtn">Log out</p>
+            <p className="logoutBtn" onClick={() => {navigate("/")}}>Log out</p>
         </div>
     )
     

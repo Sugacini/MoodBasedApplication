@@ -13,6 +13,7 @@ import Food from "./components/Food";
 import Book from "./components/Book";
 import SingleBook from "./components/SingleBook";
 import Game from "./components/Game";
+import TodaysMood from "./components/TodaysMood";
 
 function App(){
   return(
@@ -33,6 +34,7 @@ function App(){
         <Route path="/book" element={<Book />} />
         <Route path="/singleBook" element={<SingleBook />} />
         <Route path="/game" element={<Game />} />
+        <Route path="/todaysMood" element={<TodaysMood />} />
       </Routes>
     </Router>
   )

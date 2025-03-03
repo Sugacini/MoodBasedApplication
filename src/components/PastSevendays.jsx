@@ -1,5 +1,5 @@
 import { Chart as ChartJS} from "chart.js/auto";
-import { Doughnut } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import { useNavigate,useLocation } from "react-router-dom";
 import Header from "./Header";
 
@@ -10,26 +10,14 @@ function randomColorPicker() {
     return `rgb(${r}, ${g}, ${b})`
   }
 
-  async function getTodaysLog(params) {
-    let now = new Date();
-    let dateAndTime = (now.toLocaleString()).split(",");
-    let todaysDate = dateAndTime[0];
-    console.log(dateAndTime,todaysDate);
-    var dateFormated = todaysDate.slice(6)+"/"+todaysDate.slice(3,5)+"/"+todaysDate.slice(0,2);
-    var response = await fetch('http://localhost:3000/todaysLog&today='+dateFormated,)// i need to send the userId with it
-  }
+async function sevenDaysDataGetter() {
+  await fetch('http://localhost:3000/lastSevenDays&userId='+userId);
+}
   
-  function TodaysMood() {
-    // const [count, setCount] = useState(0)
+  function PastSevenDays() {
     const location = useLocation();
     const dataFromSender = location.state;
-
     console.log(dataFromSender);
-    
-    
-
-
-    
   
     const options = {
       responsive: true,
@@ -43,11 +31,11 @@ function randomColorPicker() {
     };
 
     var data ={
-      labels : ['12:01','11:30','10:43','9:54'],//emotions txt
+      labels : ['12:01','11:30','10:43','9:54'],//Date
       datasets : [
       {
         label : "Emotion",
-        data : [100,200,100], //current emotion
+        data : [100,200,100], //emotion values
         borderRadius : 5,
         backgroundColor : [randomColorPicker(), randomColorPicker(), randomColorPicker()]
         
@@ -61,13 +49,13 @@ function randomColorPicker() {
     return (
       <>
         <div className='barChart'>
-          <Doughnut 
+          <Bar 
           data={data}
-          options={options} ></Doughnut>
+          options={options} ></Bar>
         </div>
       </>
     )
   }
   
-  export default TodaysMood
+  export default PastSevenDays;
   

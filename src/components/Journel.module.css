@@ -17,15 +17,21 @@
 }
 
 .option{
-    /* width: 3vw; */
-    height: 3vw;
-    /* border: 1px solid black; */
+    width: fit-content;
     display: flex;
-    /* margin-top: 1%; */
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    gap: 20px;
+    background-color: #0085E1;
+    color: white;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    bottom: 100px;
+    right: 100px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transition: opacity .5s;
 }
 
 .logo{

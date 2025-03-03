@@ -26,11 +26,13 @@ function Header({setUserId, userUniqueId, loginBtn={loginBtn}, backTo, obj}) {
 
             {/* <i NamclassName="fa-solid fa-circle-user icon" onClick={()=>setUIconClick(!userIconCliked)}></i> */}
             {console.log('userUniqueId : ',userUniqueId)}
+            {userUniqueId?console.log('%cwrong', 'color: green; font-size: 30px;'):null
+            }
             {userUniqueId?<i className="fa-solid fa-circle-user icon" onClick={()=>setUIconClick(!userIconCliked)}></i>:
             isLogCLicked ? loggedIn ?
                 <i className="fa-solid fa-circle-user icon" onClick={()=>setUIconClick(!userIconCliked)}></i> :
                 <div className="forLogin">
-                    <Login setLog={setLog} setWay={setWay} wayToLogin={wayToLogin} setUserId={setUserId} userUniqueId={userUniqueId} setLogClicked={setLogClicked}/>
+                    <Login setLog={setLog} setWay={setWay} wayToLogin={wayToLogin} setUserId={setUserId} userUniqueId={userUniqueId} setLogClicked={setLogClicked} loggedIn={loggedIn} isLogCLicked={isLogCLicked}/>
                 </div>
                 : <div className="gettingIn">
                     {loginBtn?<div className="loginTxt" ref={loginBtn} onClick={() => {

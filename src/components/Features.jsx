@@ -7,10 +7,13 @@ import Header from "./Header";
 import ChatBot from "./ChatBot";
 import { FaRobot, FaMusic, FaBook, FaQuoteRight, FaUtensils, FaClapperboard, FaGamepad, FaBookOpen, FaFilePen, FaLeftLong } from "react-icons/fa6";
 import { useEffect } from "react";
+import { useAppContext } from "../ForContext";
 
 let firstFeatureNotClicked = true;
 
 function Features() {
+    const {userIdContext,setIdForContxt} = useAppContext();
+    
     const [emoImg, setEmoImg] = useState("");
     const [userUniqueId, setUserId] = useState(null);
     // const [firstFeatureClicked, setFeatureClicked] = useState(false);
@@ -39,6 +42,7 @@ function Features() {
 
     async function firstClickOfFeature(){
         if (userUniqueId!=null && firstFeatureNotClicked) {
+            
             firstFeatureNotClicked=false;
             let now = new Date();
             let dateAndTime = (now.toLocaleString()).split(",");
@@ -46,6 +50,8 @@ function Features() {
             date = date.slice(6)+"/"+date.slice(3,5)+"/"+date.slice(0,2);
             let time = dateAndTime[1];
             console.log('%cfirst click', 'color: red; font-size: 30px;');
+            console.log( 'userIdContext : ', userIdContext);
+
 
             await fetch("http://localhost:3000/userEntry",{
                 method:'PUT',
@@ -135,7 +141,12 @@ function Features() {
     //     return navigate("/home");
     // }
 
-    useEffect(() => { uId ? setUserId(uId) : null }, [])
+    useEffect(() => { 
+        if (uId) {
+            setUserId(uId);
+            setIdForContxt(uId);
+        }
+    }, [])
 
     // console.log(setImg.current, emoImg, data1);
     return (

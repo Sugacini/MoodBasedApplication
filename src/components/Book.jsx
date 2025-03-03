@@ -45,8 +45,6 @@ function Book() {
         <Header userUniqueId={userId} setUserId={null} loginBtn={null} backTo={'features'} obj={{state: {findEmo: data1, idOfUser: userId}}} className="BookHeader"/>
 
         <div className="bookOuter">
-            {/* <div className="bookHeader"> */}
-            {/* </div> */}
             
             <div className="bookSideBar">
             {quote[(Math.floor(Math.random() * 3))]}
@@ -62,7 +60,6 @@ function Book() {
                 <span></span>
                 <span></span>
                 <span></span>
-                {/* <p>Loading</p> */}
               </div>}
             </div>
         </div>

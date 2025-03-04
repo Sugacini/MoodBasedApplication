@@ -9,8 +9,8 @@ function CreateProvider({ children }){
     <Context.Provider value={{ isSignUp, setIsSignUp }}>
       {children}
     </Context.Provider>
-  );
-};
+  )
+}
 
 export default CreateProvider;
 

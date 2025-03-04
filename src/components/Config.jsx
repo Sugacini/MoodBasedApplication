@@ -72,7 +72,7 @@ function Config(){
     return(
         <div className="configOuter">
             <h1>Details</h1>
-            {question()};
+            {question()}
             <button onClick={next} className="CnextBtn">Next</button>
         </div>
     )

@@ -46,13 +46,6 @@ function Header({setUserId, userUniqueId, loginBtn={loginBtn}, backTo, obj}) {
                     }} >
                         <p>Sign in</p>
                     </div>}
-                    
-                    {/* <div className="signUpTxt" onClick={() => {
-                        setLogClicked(true);
-                        setWay('signUp');
-                    }} >
-                        <p>Sign up</p>
-                    </div> */}
                 </div>}
 
             {userIconCliked? <SideBar />:null }

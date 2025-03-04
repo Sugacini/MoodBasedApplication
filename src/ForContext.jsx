@@ -13,7 +13,7 @@ export function ContextProvider({children}) {
     <Context.Provider 
         value={{detectedEmotion,userIdContext,setIdForContxt}}
     >
-        {children};
+        {children}
     </Context.Provider>
    )
 }

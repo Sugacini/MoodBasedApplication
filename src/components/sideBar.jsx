@@ -12,6 +12,8 @@ function SideBar() {
             {/* <p>Change userId</p> */}
 
             <p className="logoutBtn" onClick={() => {
+                console.log('clicked');
+                
                 sessionStorage.clear();
                 navigate("/");
                 }}>Log out</p>

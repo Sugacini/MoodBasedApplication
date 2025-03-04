@@ -7,7 +7,7 @@ const cors=require("cors");
 const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "your_password1",
+    password: "suga@123",
     database: "Emotions",
 });
 
@@ -378,6 +378,7 @@ app.put("/userEntry",(req,res)=>{
                         console.log(error);
                     }
                     else{
+                        console.log(result);
                         userNum = result[0].IdNumber;
                         connection.query("insert into UserLogs (userNumId, mood, date, time) values (?,?,?,?)", [userNum, mood, date, time], (error, results) => {
                             if(error){

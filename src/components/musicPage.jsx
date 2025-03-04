@@ -107,12 +107,12 @@ function MusicPage() {
           <div className={addElement ? 'musicBottomSec' : 'mainsBottomSec'}>
 
             {!addElement ? (data!=null)? data.map((album, idx) =>      
-              (idx < 9) ? <AlbumBox name={album.data.name} key={idx} idx={idx} imgUrl={album.data.image[2].url} setState={setState} setAlbum={setAlbum} description={album.data.description}></AlbumBox> :null):<div className="loader">
-              <span></span>
-              <span></span>
-              <span></span>
-              {/* <p>Loading</p> */}
-            </div> : null }
+              (idx < 9) ? <AlbumBox name={album.data.name} key={idx} idx={idx} imgUrl={album.data.image[2].url} setState={setState} setAlbum={setAlbum} description={album.data.description}></AlbumBox> :null):
+              <div className="animation flex">
+              <div className="balls" id="circleOne"></div>
+              <div className="balls" id="circleTwo"></div>
+              <div className="balls" id="circleThree"></div>
+          </div> : null }
 
             {addElement ? <div className='titleBox'>
               {!resume && (canPlay==true)?<PauseButton playFirst={playFirst} decreseParentsWidth={decreseParentsWidth} setFirstPlay={setFirstPlay} canPlay={canPlay} setPlayStatus={setPlayStatus} setResume={setResume} resume={resume}/>

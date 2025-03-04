@@ -13,7 +13,6 @@ async function bookDetails(data1) {
             bookId: data1,
         })
     })
-    // let response = await fetch("https://www.googleapis.com/books/v1/volumes/"+data1);
     console.log(response);
     let res = response.json();
     let res1 = await res.then();
@@ -37,8 +36,9 @@ function SingleBook() {
     },[])
 
     setTimeout(() => {
-        console.log((isBookDetails));
-        descriptionOfBook.current.innerHTML = isBookDetails.volumeInfo.description;
+        if(isBookDetails.volumeInfo.description){
+            descriptionOfBook.current.innerHTML = isBookDetails.volumeInfo.description;
+        }
     }, 100)
     console.log("Enter");
     return (
@@ -79,12 +79,11 @@ function SingleBook() {
                     </div>
                 </div>
             </div>
-            :<div class="loader">
-            <span></span>
-            <span></span>
-            <span></span>
-            {/* <p>Loading</p> */}
-          </div>}
+            : <div className="animation flex">
+            <div className="balls" id="circleOne"></div>
+            <div className="balls" id="circleTwo"></div>
+            <div className="balls" id="circleThree"></div>
+        </div>}
         </div>
     )
 }

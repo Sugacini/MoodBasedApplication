@@ -7,7 +7,7 @@ import Header from "./Header";
 
 let count = 0;
 
-function Story(){
+function Story() {
     const [story, setStory] = useState("");
     const [title, setTitle] = useState("");
     const [sAuthor, setAuthor] = useState("");
@@ -21,7 +21,7 @@ function Story(){
     const data2 = data1.emo;
     console.log(data2);
 
-    async function getStory(){
+    async function getStory() {
         console.log("Enter");
         let response = await fetch("https://shortstories-api.onrender.com/");
         let res = response.json();
@@ -37,35 +37,29 @@ function Story(){
         getStory();
     }, [])
 
-    return(
+    return (
         <>
-            <Header userUniqueId={userId} setUserId={null} loginBtn={null} backTo={"features"} obj={{state: {findEmo: data2, idOfUser: userId}}}/>
+            <Header userUniqueId={userId} setUserId={null} loginBtn={null} backTo={"features"} obj={{ state: { findEmo: data2, idOfUser: userId } }} />
             <div className="storyOuter">
-
-            <div className="stoHead">
-                {/* <div className="stoBack" onClick={() => {navigate("/features", {state: {findEmo: data2, idOfUser: userId}})}}>
-                    <FaLeftLong style={{fontSize: "50px"}}></FaLeftLong>
-                </div> */}
-                <div className="sto" onClick={() => {navigate("/quotes", {state: {emo: data2, idOfUser: userId}})}}>
-                    <FaQuoteRight className="iconSize"></FaQuoteRight>
+                <div className="storyOuter1">
+                    <div className="titleAndAuthor">
+                        <div className="sto" onClick={() => { navigate("/quotes", { state: { emo: data2, idOfUser: userId } }) }}>
+                            <FaQuoteRight className="iconSize"></FaQuoteRight>
+                        </div>
+                        <div className="sHead">
+                            <p className="storyHead">{title}</p>
+                            <p className="author">-{sAuthor}</p>
+                        </div>
+                    </div>
+                    <div className="story">
+                        <div className="story1">{story}</div>
+                        <div className="moral">Moral: {sMoral}</div>
+                        <button className="nextStory" onClick={getStory}>Next Story</button>
+                    </div>
                 </div>
             </div>
-            <div className="storyHeader">Story </div>
-            <div className="story">
-                <div className="sHead">
-                    <p className="storyHead">{title}</p>
-                    <p className="author">-{sAuthor}</p>
-
-                    </div>
-                    
-                    <p className="storyDiv">{story}</p>
-                </div>
-            
-            <div className="moral">Moral: {sMoral}</div>
-            <button className="nextStory" onClick={getStory}>Next Story</button>
-        </div>
         </>
-        
+
     )
 }
 

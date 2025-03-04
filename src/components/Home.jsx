@@ -13,6 +13,7 @@ function Home() {
     const navigate = useNavigate();
 
     const findEmotion = useRef();
+    let detectFace = false;
 
     const location = useLocation();
     const userData = location.state;
@@ -140,12 +141,19 @@ function Home() {
             }
             setIdForContxt(findEmotion.current);
             detectMessage.current.textContent = allEmotions[indexVal].toUpperCase();
+            detectFace = true;
         }, 2000)
 
         setTimeout(() => {
             console.log(localStream.getTracks());
                 localStream.getTracks().forEach(track => track.stop());
-                navigate("/features", { state: { findEmo: (findEmotion.current), idOfUser: userData.idOfUser } });
+                if(detectFace){
+                    navigate("/features", { state: { findEmo: (findEmotion.current), idOfUser: userData.idOfUser } });
+                }
+                else{
+                    navigate("/notDetect", {state: { idOfUser: userId }}); 
+                }
+                
         }, 4500);
 
     }
@@ -162,7 +170,7 @@ function Home() {
                 <canvas ref={canvasDetect} className="createCanvas"></canvas>
                 <button onClick={detectHandler} className="detectBtn">Detect Mood</button>
                 <div className="detected" ref={detectMessage}></div>
-            </div>
+            </div>  
         </>
     )
 

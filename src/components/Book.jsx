@@ -37,7 +37,7 @@ function Book() {
     console.log(data1);
 
     useEffect(() => {
-        BookCollection(data1).then(res => setBook(res));
+        BookCollection(data1).then(res => setBook(res))
       }, [])
 
     return (
@@ -45,12 +45,13 @@ function Book() {
         <Header userUniqueId={userId} setUserId={null} loginBtn={null} backTo={'features'} obj={{state: {findEmo: data1, idOfUser: userId}}} className="BookHeader"/>
 
         <div className="bookOuter">
-            {/* <div className="bookHeader"> */}
-            {/* </div> */}
             
             <div className="bookSideBar">
-            {quote[(Math.floor(Math.random() * 3))]}
+                <img src={data1+".png"} className="emojiImage1"></img>
+                <div>{quote[(Math.floor(Math.random() * 3))]}</div>
             </div>
+            <div className="bookContainer1">
+                {/* <div className="bookQuotesHead">{quote[(Math.floor(Math.random() * 3))]}</div> */}
             <div className="bookContainer">
                 {(isBook != null) ? isBook.map((singleBook, index) => {
                     {console.log(singleBook.volumeInfo.imageLinks.thumbnail)}
@@ -58,12 +59,12 @@ function Book() {
                         <img src={singleBook.volumeInfo.imageLinks.thumbnail} className="setBookImg"></img>
                         <p className="bookName">{singleBook.volumeInfo.title}</p>
                     </div>
-                }) : <div class="loader">
-                <span></span>
-                <span></span>
-                <span></span>
-                {/* <p>Loading</p> */}
-              </div>}
+                }) :  <div className="animation flex">
+                <div className="balls" id="circleOne"></div>
+                <div className="balls" id="circleTwo"></div>
+                <div className="balls" id="circleThree"></div>
+            </div>}
+            </div>
             </div>
         </div>
         </>

@@ -401,30 +401,65 @@ app.put("/userEntry",(req,res)=>{
 })
 
 app.get("/todaysLog",(req,res)=>{
-    var  { userId, date } = req.query()
-    connection.query("select * from UserLogs where userId = ? and data = ?", [userId, todaysDate], (error, results) => {
-        if(error){
-            console.log(error);
+    console.log('connected');
+    console.log(req.query);
+    
+    
+    var  { userId, date } = req.query;
+    var userNum;
+    connection.query("select IdNumber from UnarvAIUsers where userId = ?", [userId], (err, result) => {
+        if (err) {
+          console.log(err); 
         }
         else{
-            res.status = 200;
-            res.send(results);
+            userNum = result[0].IdNumber;
+            connection.query("select * from UserLogs where userNumId = ? and date = ?", [userNum, date], (error, results) => {
+                if(error){
+                    console.log(error);
+                }
+                else{
+                    // console.log(results);
+                    
+                    res.status = 200;
+                    res.send(results);
+                }
+            })
         }
     })
+
+    
 })
 
 app.get("/lastSevenDays",(req,res)=>{
-    var  { userId } = req.query()
-    connection.query("select * from UserLogs where userId = ?", [userId], (error, results) => {
-        if(error){
-            console.log(error);
+    var  { userId } = req.query;
+    console.log('fetch arised');
+    // console.log(userId);
+
+    connection.query("select IdNumber from UnarvAIUsers where userId = ?", [userId], (err, result) => {
+        if (err) {
+          console.log(err); 
         }
         else{
-            res.status = 200;
-            res.send(results);
+            userNum = result[0].IdNumber;
+            console.log(userNum);
+            
+            connection.query("select * from UserLogs where date >= Date_Sub(curdate(), interval 1 day) and userNumId = ?", [userNum], (error, results) => {
+                if(error){
+                    console.log(error);
+                }
+                else{
+                    console.log(results);
+                    
+                    res.status = 200;
+                    res.send(results);
+                }
+            })
         }
     })
-})
+    
+    
+    
+})// ]first time of usage, no table created
 
 app.listen(3000, () => {
     console.log("Server Connected port 3000");

@@ -42,7 +42,6 @@ function Features() {
 
     async function firstClickOfFeature(){
         if (userUniqueId!=null && firstFeatureNotClicked) {
-            
             firstFeatureNotClicked=false;
             let now = new Date();
             let dateAndTime = (now.toLocaleString()).split(",");
@@ -67,8 +66,8 @@ function Features() {
             })
         }
         else{
-            console.log('%cNot the first click', 'color: green; font-size: 30px;');
-            // console.log('Not the first click');
+            // console.log('%cNot the first click', 'color: green; font-size: 30px;');
+            console.log('Not the first click');
             
         }
     }

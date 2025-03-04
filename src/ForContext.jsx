@@ -9,9 +9,11 @@ export function ContextProvider({children}) {
     var userUniqueIdContxt= useRef();
     var detectedEmotion= useRef();
     const [userIdContext, setIdForContxt] = useState(null);
+    const [currentEmotion, setCurrentEmotion] = useState(null);
    return (
     <Context.Provider 
-        value={{detectedEmotion,userIdContext,setIdForContxt}}
+        value={{userIdContext,setIdForContxt,
+            currentEmotion, setCurrentEmotion}}
     >
         {children};
     </Context.Provider>

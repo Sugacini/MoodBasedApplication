@@ -25,9 +25,7 @@ function Header({setUserId, userUniqueId, loginBtn={loginBtn}, backTo, obj}) {
             
 
             {/* <i NamclassName="fa-solid fa-circle-user icon" onClick={()=>setUIconClick(!userIconCliked)}></i> */}
-            {console.log('userUniqueId : ',userUniqueId)}
-            {userUniqueId?console.log('%cwrong', 'color: green; font-size: 30px;'):null
-            }
+            
             {userUniqueId?<i className="fa-solid fa-circle-user icon" onClick={()=>setUIconClick(!userIconCliked)}></i>:
             isLogCLicked ? loggedIn ?
                 <i className="fa-solid fa-circle-user icon" onClick={()=>setUIconClick(!userIconCliked)}></i> :

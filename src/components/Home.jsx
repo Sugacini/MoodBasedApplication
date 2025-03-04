@@ -3,9 +3,12 @@ import { useRef, useState, useEffect } from "react";
 import * as faceapi from "face-api.js";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Header from "./Header";
+import { useAppContext } from "../ForContext";
 let count = 0;
 
 function Home() {
+
+    const {userIdContext,setIdForContxt} = useAppContext();
 
     const navigate = useNavigate();
 
@@ -136,6 +139,7 @@ function Home() {
                 findEmotion.current = allEmotions[indexVal];
                 console.log(allEmotions[indexVal], temp);
             }
+            setIdForContxt(findEmotion.current);
             detectMessage.current.textContent = allEmotions[indexVal].toUpperCase();
             detectFace = true;
         }, 2000)

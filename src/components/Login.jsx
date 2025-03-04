@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { FaXmark } from "react-icons/fa6";
+import { useAppContext } from "../ForContext";
 
 function Login({setLog, setWay, wayToLogin, setUserId, userUniqueId, setLogClicked, loggedIn, isLogCLicked}) {
     const [clicked,setClick] = useState(false);
@@ -9,6 +10,9 @@ function Login({setLog, setWay, wayToLogin, setUserId, userUniqueId, setLogClick
     const password = useRef();
     const userId = useRef();
 
+    const {userIdContext,setIdForContxt} = useAppContext();
+
+
      
 
     async function sigUpHandler(event) {
@@ -17,7 +21,6 @@ function Login({setLog, setWay, wayToLogin, setUserId, userUniqueId, setLogClick
         var usersPassword = password.current.value; 
         event.preventDefault();
 
-        setUserId(usersUserId);
                       
         if (usersUserId.length<6 || usersPassword.length<8 || isNaN(usersPassword)==false || usersPassword.split('').some(x=>x>-1)==false) {
             if (usersUserId.length<6) {
@@ -52,6 +55,9 @@ function Login({setLog, setWay, wayToLogin, setUserId, userUniqueId, setLogClick
             }
             else{
                 try {
+                    setUserId(usersUserId);
+                    setIdForContxt(usersUserId);
+
                     console.log('atttempt to add account');
                     setLog(true);        
                     await fetch('http://localhost:3000/addAccount',{
@@ -72,9 +78,6 @@ function Login({setLog, setWay, wayToLogin, setUserId, userUniqueId, setLogClick
 
     async function loginHandler(event) {
         event.preventDefault();
-        // console.log('%clog in clicked', 'color: green; font-size: 30px;');
-        
-        console.log('yes');
         
         var usersUserId = userId.current.value;
         var usersPassword = password.current.value; 
@@ -92,18 +95,11 @@ function Login({setLog, setWay, wayToLogin, setUserId, userUniqueId, setLogClick
             if(isValid){
                 setLog(true);
                 setUserId(usersUserId);
-                console.log('%clogged', 'color: green; font-size: 30px;');
+                setIdForContxt(usersUserId);
             }
             else{
-                console.log(isValid);
-                console.log(loggedIn);
-                console.log();
-                console.log(isLogCLicked);
-                
-                
-                
                 setIdErr("Correct your username or password");
-                console.log('%cwrong', 'color: red; font-size: 30px;');
+                // console.log('%cwrong', 'color: red; font-size: 30px;');
             }
         } catch (error) {
             console.log(error);

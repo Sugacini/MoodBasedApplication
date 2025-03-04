@@ -15,6 +15,7 @@ import SingleBook from "./components/SingleBook";
 import Game from "./components/Game";
 import TodaysMood from "./components/TodaysMood";
 import NotDetected from "./components/NotDetected";
+import PastSevenDays from "./components/PastSevendays";
 
 function App(){
   return(
@@ -37,6 +38,8 @@ function App(){
         <Route path="/game" element={<Game />} />
         <Route path="/todaysMood" element={<TodaysMood />} />
         <Route path="/notDetect" element={<NotDetected />} />
+        <Route path="/pastSevenDays" element={<PastSevenDays />} />
+
       </Routes>
     </Router>
   )

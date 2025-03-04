@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { FaXmark } from "react-icons/fa6";
 
-function Login({setLog, setWay, wayToLogin, setUserId, userUniqueId, setLogClicked}) {
+function Login({setLog, setWay, wayToLogin, setUserId, userUniqueId, setLogClicked, loggedIn, isLogCLicked}) {
     const [clicked,setClick] = useState(false);
     const [userIdErr,setIdErr] = useState(null);
     const [passwordErr,setPasswordErr] = useState(null);
@@ -72,12 +72,13 @@ function Login({setLog, setWay, wayToLogin, setUserId, userUniqueId, setLogClick
 
     async function loginHandler(event) {
         event.preventDefault();
+        // console.log('%clog in clicked', 'color: green; font-size: 30px;');
+        
         console.log('yes');
         
         var usersUserId = userId.current.value;
         var usersPassword = password.current.value; 
 
-        setUserId(usersUserId);
 
         try {
             var isCorrect = await fetch('http://localhost:3000/isValidUser',{
@@ -90,9 +91,19 @@ function Login({setLog, setWay, wayToLogin, setUserId, userUniqueId, setLogClick
             var isValid = await isCorrect.json();
             if(isValid){
                 setLog(true);
+                setUserId(usersUserId);
+                console.log('%clogged', 'color: green; font-size: 30px;');
             }
             else{
+                console.log(isValid);
+                console.log(loggedIn);
+                console.log();
+                console.log(isLogCLicked);
+                
+                
+                
                 setIdErr("Correct your username or password");
+                console.log('%cwrong', 'color: red; font-size: 30px;');
             }
         } catch (error) {
             console.log(error);

@@ -402,14 +402,27 @@ app.put("/userEntry",(req,res)=>{
 })
 
 app.get("/todaysLog",(req,res)=>{
-    connection.query("insert into UserLogs (userNumId, mood, date, time) values (?,?,?,?)", [userNum, mood, date, time], (error, results) => {
+    var  { userId, date } = req.query()
+    connection.query("select * from UserLogs where userId = ? and data = ?", [userId, todaysDate], (error, results) => {
         if(error){
             console.log(error);
         }
         else{
             res.status = 200;
+            res.send(results);
+        }
+    })
+})
 
-            res.send('added');
+app.get("/lastSevenDays",(req,res)=>{
+    var  { userId } = req.query()
+    connection.query("select * from UserLogs where userId = ?", [userId], (error, results) => {
+        if(error){
+            console.log(error);
+        }
+        else{
+            res.status = 200;
+            res.send(results);
         }
     })
 })

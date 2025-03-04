@@ -40,11 +40,8 @@ function JournelLogo() {
     }
 
     async function saveData() {
-        console.log(writeText.current.value);
-        
         let value = writeText.current.value;
         let value1 = ((value.indexOf(" ")!=-1)&&(value.indexOf(" ")<9))?value.slice(0,value.indexOf(" ")):value.slice(0,8);
-        console.log(value, value1);
         let now = new Date();
         let dateAndTime = (now.toLocaleString()).split(",");
         let date = dateAndTime[0];
@@ -54,12 +51,6 @@ function JournelLogo() {
         newDiv.current.remove();
         setCount(0);
         if (JournalSelected.idx!=null) {
-
-            console.log('modified');
-            console.log(JournalSelected.idx);
-            
-            
-            console.log(value);
             await fetch("http://localhost:3000/updateJournal",{
                 method:'PUT',
                 headers:{
@@ -75,8 +66,6 @@ function JournelLogo() {
             })
         }
         else{
-            console.log(value);
-            
             var addToDb = await fetch("http://localhost:3000/addJournal",{
                 method:'PUT',
                 headers:{
@@ -90,14 +79,9 @@ function JournelLogo() {
                 })
             })
         }
-
-        console.log('...........');
-
         JournalSelected.idx=null;
         
-
         // addToDb
-
         
     }
 
@@ -129,15 +113,11 @@ function JournelLogo() {
 
     function singleJournalClickHandler(e){
 
-        console.log('here');
-        
-
         var clickedElement=e.target;
         if (JournalSelected.idx!=null) {
             newDiv.current.remove();
 
         }
-
         // if (JournalSelected.idx==null) {
             if (clickedElement.id) {
                 JournalSelected.idx=clickedElement.id;  
@@ -150,11 +130,7 @@ function JournelLogo() {
                 JournalSelected.idx=clickedElement.parentElement.parentElement.id;  
     
             }
-            // console.log(JournalSelected.idx);    
-
-            console.log("upto", JournalSelected.idx);
-            
-            
+            // console.log(JournalSelected.idx);
             setCount(0);
     
             setJournalBoxes((prev) => [...prev, {}]);
@@ -190,18 +166,15 @@ function JournelLogo() {
         <>
             <Header userUniqueId={userId} setUserId={null} loginBtn={null} backTo={'features'} obj={{state: {findEmo: finalEmo, idOfUser: userId}}}/>
 
-            <div className={style.journelHeader}>
+            {/* <div className={style.journelHeader}>
                 <div className={style.logo}>
                     <div className={style.name}>Journel</div>
-                </div>
+                </div> */}
 
-                <div className={style.options}>
-                    <div className={style.create + " " + style.option} onClick={createDiv}>
-                        Create New 
-                        <i className="fa-solid fa-square-plus" style={{ fontSize: "35px", color: "black" }}></i>
+                    <div className={style.create + " " + style.option} onClick={createDiv} style={(count!=0)?{ opacity: "0"}:null}>
+                        <i className="fa-solid fa-square-plus" style={{ fontSize: "35px"}}></i>
                     </div>
-                </div>
-            </div>
+            {/* </div> */}
 
             <div className={style.writeJournel}>
                 <div className={style.journelContainer} ref={createTextDiv} style={(count==0)?{width:'0%'}:{width:'80%'}}>

@@ -6,9 +6,9 @@ function SideBar() {
         <div className="sideBar">
             <p onClick={() => {navigate("/todaysMood")}}>Today's mood</p>
 
-            {/* <p>This week</p>
+            <p onClick={() => {navigate("/pastSevendays")}}>This week</p>
 
-            <p>Change userId</p> */}
+            {/* <p>Change userId</p> */}
 
             <p className="logoutBtn" onClick={() => {navigate("/")}}>Log out</p>
         </div>

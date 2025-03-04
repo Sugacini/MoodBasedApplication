@@ -108,10 +108,10 @@ function MusicPage() {
 
             {!addElement ? (data!=null)? data.map((album, idx) =>      
               (idx < 9) ? <AlbumBox name={album.data.name} key={idx} idx={idx} imgUrl={album.data.image[2].url} setState={setState} setAlbum={setAlbum} description={album.data.description}></AlbumBox> :null):
-              <div class="animation flex">
-              <div class="balls" id="circleOne"></div>
-              <div class="balls" id="circleTwo"></div>
-              <div class="balls" id="circleThree"></div>
+              <div className="animation flex">
+              <div className="balls" id="circleOne"></div>
+              <div className="balls" id="circleTwo"></div>
+              <div className="balls" id="circleThree"></div>
           </div> : null }
 
             {addElement ? <div className='titleBox'>

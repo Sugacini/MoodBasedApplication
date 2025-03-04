@@ -70,10 +70,6 @@ function Quotes(){
                                 <div className="quotesHeading">QUOTES</div>
                                     <div className="quotes1">
     
-                                        {/* <div className="setQuo1">
-                                            <FaQuoteLeft className="quoIcon" />
-                                        </div> */}
-    
                                         <p className="setQuo">
                                             <FaQuoteLeft className="quoIcon" />
                                                 {quotes}

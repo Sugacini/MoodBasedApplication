@@ -25,14 +25,14 @@ function Sumplete() {
 
             <div className="background" ref={backBtn}>
                 <div className="heading" ref={headDiv}>Sumplete</div>
-                <div className="play" onclick={playButton}>How to play</div>
-                <div className="startButton" onclick={startHandler} ref={startBtn}>Start</div>
+                <div className="play" onClick={playButton}>How to play</div>
+                <div className="startButton" onClick={startHandler} ref={startBtn}>Start</div>
             </div>
 
-            <div id="instruction" onclick="instructor()">
+            <div id="instruction" onClick="instructor()">
                 <p className="first">How to Play? </p>
                 <p className="second">In this game to find out the specific number(outside the grid) you need to cut down the irrelevant number inside the grid. If you click on the irrelevant numbers, it will be removed. You can undo the click, if you find the number relevant. If the specific number matches the sum of the numbers inside the grid, it will change color. There is a hint option help you. Click on the submit button to complete the game.</p>
-                <div className="back" onclick={backButton}>
+                <div className="back" onClick={backButton}>
                     <img src="left.png"></img>
                 </div>
             </div>
@@ -51,17 +51,17 @@ function Sumplete() {
                     <div id="gridDiv"></div>
                     <div id="answerDiv"></div>
                     <div id="optionsDiv">
-                        <button className="menuBox" onclick="hintOption()">Hint</button>
-                        <button className="menuBox" onclick="reset()">Reset</button>
+                        <button className="menuBox" onClick="hintOption()">Hint</button>
+                        <button className="menuBox" onClick="reset()">Reset</button>
                         <div className="menuBox1">
                             <p className="word1">Grid :</p>
                             <div className="box1">
-                                <button className="subheading" onclick="createGrid(3)">3*3</button>
-                                <button className="subheading" onclick="createGrid(4)">4*4</button>
-                                <button className="subheading" onclick="createGrid(5)">5*5</button>
+                                <button className="subheading" onClick="createGrid(3)">3*3</button>
+                                <button className="subheading" onClick="createGrid(4)">4*4</button>
+                                <button className="subheading" onClick="createGrid(5)">5*5</button>
                             </div>
                         </div>
-                        <button className="menuBox" onclick="submit()">Submit</button>
+                        <button className="menuBox" onClick="submit()">Submit</button>
                     </div>
                 </div>
                 <div id="answerDiv1"></div>

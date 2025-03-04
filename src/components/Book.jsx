@@ -37,7 +37,7 @@ function Book() {
     console.log(data1);
 
     useEffect(() => {
-        BookCollection(data1).then(res => setBook(res));
+        BookCollection(data1).then(res => setBook(res))
       }, [])
 
     return (
@@ -59,10 +59,10 @@ function Book() {
                         <img src={singleBook.volumeInfo.imageLinks.thumbnail} className="setBookImg"></img>
                         <p className="bookName">{singleBook.volumeInfo.title}</p>
                     </div>
-                }) :  <div class="animation flex">
-                <div class="balls" id="circleOne"></div>
-                <div class="balls" id="circleTwo"></div>
-                <div class="balls" id="circleThree"></div>
+                }) :  <div className="animation flex">
+                <div className="balls" id="circleOne"></div>
+                <div className="balls" id="circleTwo"></div>
+                <div className="balls" id="circleThree"></div>
             </div>}
             </div>
             </div>

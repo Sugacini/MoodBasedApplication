@@ -1,9 +1,18 @@
 .wholeMusicPage{
     display: flex;
-    justify-content: space-evenly;
     height: 970px;
+    /* align-items: center;
+    padding-top: 40px; */
+    gap: 260px;
+}
+
+#musicsLeft{
+    width: 25%;
+    height: 1026px;
+    background-color: #0362d8;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    padding-top: 40px;
 }
 
 .leftOfMainMusic{
@@ -27,6 +36,7 @@
     transition: width 0.8s ease;
     overflow-y: auto;
     box-shadow: 5px 5px 19px rgba(0, 0, 0, 0.203);
+    margin-top: 25px;
 }
 
 .rightOfMusic{

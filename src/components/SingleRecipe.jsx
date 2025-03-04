@@ -85,7 +85,6 @@ function SingleRecipe() {
                             <div className="singleFoodInstruction">
                                 <p className="singleFoodHeading">Instruction</p>
                                 <ol ref={foodDescription}>{
-                                    // console.log((isSingleFood.meals[0].strInstructions).split("\n"))
                                     ((isSingleFood.meals[0].strInstructions).split("\n")).map((splitVal, index) => {
                                         return(
                                             (splitVal != "\r") ? (
@@ -107,15 +106,15 @@ function SingleRecipe() {
                         </div>
                         <div className="iframeVideo">
                             {console.log(idValue[1])}
-                            <iframe  width="560" height="315" src={"https://www.youtube.com/embed/"+idValue[1]} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen className="videoSrc"></iframe>
+                            <iframe  width="560" height="315" src={"https://www.youtube.com/embed/"+idValue[1]} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowfullscreen className="videoSrc"></iframe>
                         </div>
                     </div>
                 </div>
 
-                :  <div class="animation flex">
-                <div class="balls" id="circleOne"></div>
-                <div class="balls" id="circleTwo"></div>
-                <div class="balls" id="circleThree"></div>
+                :  <div className="animation flex">
+                <div className="balls" id="circleOne"></div>
+                <div className="balls" id="circleTwo"></div>
+                <div className="balls" id="circleThree"></div>
             </div>}
         </div>
 

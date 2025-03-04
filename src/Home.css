@@ -1,3 +1,6 @@
+
+
+
 *{
     padding: 0;
     margin: 0;
@@ -7,7 +10,7 @@
 
 .homeOuter{
     width: 60%;
-    height: 1000px;
+    height: 907px;
     margin: auto;
     display: flex;
     justify-content: space-between;
@@ -96,7 +99,7 @@
 
 .quotesDiv{
     width: 100%;
-    height: 926px;
+    height: 1026px;
     display: flex;
     background-image: url('/quotesBackground.png');
     background-repeat: no-repeat;
@@ -104,7 +107,7 @@
 }
 
 .quotesDiv1{
-    width: 70%;
+    width: 75%;
     height: 100%;
     background-color: #004db8a3;
     display: flex;
@@ -114,9 +117,9 @@
 }
 
 .quotesDiv2{
-    width: 30%;
+    width: 25%;
     height: 100%;
-    background-color: white;
+    background-color: #006bc2;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -138,7 +141,7 @@
 .quotesQuo{
     width: 75%;
     font-size: 3em;
-    color: #0072FF;
+    color: white;
     font-weight: bolder;
     line-height: 80px;
 }
@@ -238,7 +241,7 @@
 
 .storyOuter{
     width: 100%;
-    height: 926px;
+    height: 1026px;
     display: flex;
     flex-direction: column;
     margin: auto;
@@ -408,7 +411,7 @@
     background-color: #0072ff;
     cursor: pointer;
     top: 10%;
-    left: 3%;
+    left: 90%;
 }
 
 .iconSize{
@@ -459,9 +462,10 @@
 
 .foodHead{
     width: 35%;
-    height: 926px;
+    height: 100%;
     background: fixed;
-    background-image: url("/food1.jpg");
+    /* background-image: url("/food1.jpg"); */
+    background-color: #066db7;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     display: flex;
@@ -477,8 +481,8 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    background-color: black;
-    opacity: 0.7;
+    /* background-color: black; */
+    /* opacity: 0.7; */
     font-family: "Passion One", serif;
     font-size: 4em;
     color: white;
@@ -492,7 +496,7 @@
 
 .insertFood{
     width: 100%;
-    height: 926px;
+    height: 100%;
     display: flex;
     flex-wrap: wrap;
     overflow-y: scroll;
@@ -595,7 +599,7 @@
 
 .newFoodOuter{
     width: 100%;
-    height: 100%;
+    height: 98vh;
     display: flex;
 }
 
@@ -767,14 +771,14 @@
   
 .bookOuter{
     width: 100%;
-    height: auto;
+    height: 94vh;
     display: flex;
     justify-content: space-between;
 }
 
 .bookSideBar{
     width: 25%;
-    background-color: #0072ff;
+    background-color: #066DB6;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -905,7 +909,7 @@
 {
     width: 55%;
     height: auto;
-    border: 1px solid;
+    box-shadow: 0 0 8px #b4b2b2b8;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -1028,17 +1032,43 @@
     border: 1px solid;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
 }
 
 .gameInsideOuter{
-    width: 90%;
-    height: 90%;
-    /* border: 1px solid; */
+    width: 75%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-around; */
+}
+
+.gameInsideOuter1{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.gameSideBar{
+    width: 25%;
+    height: 100%;
+    background-color: #006bc2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.gameSideBar1{
+    width: 75%;
+    height: auto;
+    font-size: 3em;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bolder;
 }
 
 .gameHead{
@@ -1066,8 +1096,10 @@
 .game{
     width: 100%;
     height: 600px;
-    /* border: 1px solid; */
     display: flex;
+    flex-wrap: wrap;
+    column-gap: 6%;
+    row-gap: 8%;
     justify-content: space-around;
     align-items: center;
 }
@@ -1079,7 +1111,7 @@
 }
 
 .game1{
-    width: 25%;
+    width: 35%;
     height: 75%;
     border-radius: 10px;
     /* background-image: url("jumbled.jpg"); */
@@ -1245,7 +1277,7 @@
 
 .aboutFood{
     width: 100%;
-    height: 423px;
+    height: 525px;
     display: flex;
     justify-content: space-around;
     /* overflow-y: scroll; */
@@ -1371,7 +1403,7 @@ ul{
 .otherFoods{
   background: fixed;
   width: 95%;
-  height: 670px;
+  height: 700px;
   display: flex;
   flex-direction: column;
   /* justify-content: center; */

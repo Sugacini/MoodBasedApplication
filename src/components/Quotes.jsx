@@ -52,36 +52,43 @@ function Quotes(){
         <>
             <Header userUniqueId={userId} setUserId={null} loginBtn={null} backTo={"features"} obj={{state: {findEmo: finalEmo, idOfUser: userId}}}/>
             <div className="quotesDiv">
-
             {console.log(finalEmo)}
-            <div className="naviHead" >
-                {/* <div className="stoBack" onClick={() => {navigate("/features", {state: {findEmo: finalEmo, idOfUser: userId}})}}>
-                    <FaLeftLong style={{fontSize: "50px"}}></FaLeftLong>
-                </div> */}
-                <div className="sto" onClick={() => {
-                localStorage.setItem("emoData", JSON.stringify(finalEmo));
-                navigate("/story", {state: {emo: finalEmo, idOfUser: userId}})
-            }}>
-                    <FaBookOpen className="iconSize"></FaBookOpen>
-                </div>
+            <div className="quotesDiv2">
+                <img src={finalEmo+".png"} className="emojiImage"></img>
+                <p className="quotesQuo">" {quotes} "</p>
             </div>
-            <div className="quotesHeading">QUOTES</div>
-            <div className="quotes">
-                <div className="quotes1">
-
-                    <div className="setQuo1">
-                        <FaQuoteLeft className="quoIcon" />
+                <div className="quotesDiv1">
+                        <div className="sto1" onClick={() => {
+                            localStorage.setItem("emoData", JSON.stringify(finalEmo));
+                            navigate("/story", {state: {emo: finalEmo, idOfUser: userId}})
+                        }}>
+                            <FaBookOpen className="iconSize"></FaBookOpen>
                     </div>
-
-                    <p className="setQuo">
-                        {quotes}
-                        <FaQuoteRight  className="quoIcon1"/>
-                    </p>
-                        
+                    <div className="innerOuter">
+                        <div className="hexagonOuter">
+                            <div className="hexagon">
+                                <div className="quotesHeading">QUOTES</div>
+                                    <div className="quotes1">
+    
+                                        {/* <div className="setQuo1">
+                                            <FaQuoteLeft className="quoIcon" />
+                                        </div> */}
+    
+                                        <p className="setQuo">
+                                            <FaQuoteLeft className="quoIcon" />
+                                                {quotes}
+                                            <FaQuoteRight  className="quoIcon1"/>
+                                        </p>
+                            
+                                    </div>
+                                    {author?<p className="authorOfQuo">-{author}</p>:<p className="authorOfQuo"></p>}
+                            </div>
+                        </div>
+                        <button className="nextQuoBtn" onClick={nextQuoHandler}>NEXT</button>
+                    </div>
+                
+                
                 </div>
-                {author?<p className="authorOfQuo">-{author}</p>:<p className="authorOfQuo"></p>} 
-            </div>
-            <button className="nextQuoBtn" onClick={nextQuoHandler}>NEXT</button>
         </div>
         </>
         
@@ -93,12 +100,35 @@ export default Quotes;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import "../Home.css";
 // import { useState } from "react";
 // import { FaQuoteLeft, FaQuoteRight, FaBookOpen } from "react-icons/fa6";
 // import { useNavigate } from "react-router-dom";
-// import Story from "./Story";
 // import { useLocation } from "react-router-dom";
+// import { useEffect } from "react";
+// import { FaLeftLong } from "react-icons/fa6";
+// import Story from "./Story";
+// import Header from "./Header";
 
 // let count = 0;
 
@@ -109,9 +139,13 @@ export default Quotes;
 //     const[author, setAuthor] = useState("");
 
 //     const location = useLocation();
-//     const result = location.state;
-//     const data1 = (JSON.stringify(result.findEmo));
-//     const finalEmo = data1.slice(1, data1.length - 1);
+//     const data = location.state;
+//     console.log(data);
+//     const userId = data.idOfUser;
+//     const data1 = (JSON.stringify(data.emo))
+//     console.log(data1)
+//     const finalEmo = data1.slice(1,data1.length-1);
+//     console.log(finalEmo);
 
 //     async function nextQuoHandler(){
 //         try{
@@ -133,90 +167,52 @@ export default Quotes;
         
 //     }
 
-//     if(count == 0){
+//     useEffect(() => {
 //         nextQuoHandler();
-//         count++;
-//     }
-
+//     }, [])
 //     return(
-//         <div className="quotesDiv">
-//             <div className="naviHead" onClick={() => {navigate("/Story"), {state: {findEmo: finalEmo}}}}>
-//                 <div className="sto">
-//                     <FaBookOpen className="iconSize"></FaBookOpen>
-//                 </div>
-//             </div>
-//             <div className="quotesHeading">QUOTES</div>
-//             <div className="quotes">
-//                 <div className="quotes1">
-
-//                     <div className="setQuo1">
-//                         <FaQuoteLeft className="quoIcon" />
+//         <>
+//             <Header userUniqueId={userId} setUserId={null} loginBtn={null} backTo={"features"} obj={{state: {findEmo: finalEmo, idOfUser: userId}}}/>
+//             <div className="quotesDiv">
+//             {console.log(finalEmo)}
+//                 <div className="quotesDiv1">
+//                     <div className="naviHead" >
+//                         <div className="sto1" onClick={() => {
+//                             localStorage.setItem("emoData", JSON.stringify(finalEmo));
+//                             navigate("/story", {state: {emo: finalEmo, idOfUser: userId}})
+//                         }}>
+//                             <FaBookOpen className="iconSize"></FaBookOpen>
+//                         </div>
 //                     </div>
-
-//                     <p className="setQuo">
-//                         {quotes}
-//                         <FaQuoteRight  className="quoIcon1"/>
-//                     </p>
-                        
+//                     <div className="innerOuter">
+//                         <div className="hexagonOuter">
+//                             <div className="hexagon">
+//                                 <div className="quotesHeading">QUOTES</div>
+//                                     <div className="quotes1">
+    
+//                                         <div className="setQuo1">
+//                                             <FaQuoteLeft className="quoIcon" />
+//                                         </div>
+    
+//                                         <p className="setQuo">
+//                                             {quotes}
+//                                         <FaQuoteRight  className="quoIcon1"/>
+//                                         </p>
+                            
+//                                     </div>
+//                                     {author?<p className="authorOfQuo">-{author}</p>:<p className="authorOfQuo"></p>}
+//                             </div>
+//                         </div>
+//                         <button className="nextQuoBtn" onClick={nextQuoHandler}>NEXT</button>
+//                     </div>
+                
+                
 //                 </div>
-//                 {author?<p className="authorOfQuo">-{author}</p>:<p className="authorOfQuo"></p>} 
-//             </div>
-//             <button className="nextQuoBtn" onClick={nextQuoHandler}>NEXT</button>
 //         </div>
+//         </>
+        
 //     )
 // }
 
 // export default Quotes;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// try{
-//     let response = await fetch("https://api.api-ninjas.com/v1/quotes?X-Api-Key=d9ypSD8HSMRq0ypI8Lvm2A==KwwaQzvqwxKHfqY6");
-//     if(!response.ok){
-//         throw new Error("error")
-//     }
-//     response.json().then((res) => {
-//         if(res[0].quote.length <= 150){
-//             console.log(res[0].quote.length);
-//             setQuotes(res[0].quote);
-//             setAuthor(res[0].author);
-//         }
-//         else{
-//             nextQuoHandler();
-//         }
-        
-//         console.log(res, res[0].quote, res[0].author);
-//     })
-// }
-// catch(err){
-//     console.log(err);
-// }
-
-
-
-
-
 

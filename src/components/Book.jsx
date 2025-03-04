@@ -47,8 +47,11 @@ function Book() {
         <div className="bookOuter">
             
             <div className="bookSideBar">
-            {quote[(Math.floor(Math.random() * 3))]}
+                <img src={data1+".png"} className="emojiImage1"></img>
+                <div>{quote[(Math.floor(Math.random() * 3))]}</div>
             </div>
+            <div className="bookContainer1">
+                {/* <div className="bookQuotesHead">{quote[(Math.floor(Math.random() * 3))]}</div> */}
             <div className="bookContainer">
                 {(isBook != null) ? isBook.map((singleBook, index) => {
                     {console.log(singleBook.volumeInfo.imageLinks.thumbnail)}
@@ -56,11 +59,12 @@ function Book() {
                         <img src={singleBook.volumeInfo.imageLinks.thumbnail} className="setBookImg"></img>
                         <p className="bookName">{singleBook.volumeInfo.title}</p>
                     </div>
-                }) : <div class="loader">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>}
+                }) :  <div class="animation flex">
+                <div class="balls" id="circleOne"></div>
+                <div class="balls" id="circleTwo"></div>
+                <div class="balls" id="circleThree"></div>
+            </div>}
+            </div>
             </div>
         </div>
         </>

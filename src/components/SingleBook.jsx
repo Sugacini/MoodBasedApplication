@@ -79,12 +79,11 @@ function SingleBook() {
                     </div>
                 </div>
             </div>
-            :<div class="loader">
-            <span></span>
-            <span></span>
-            <span></span>
-            {/* <p>Loading</p> */}
-          </div>}
+            : <div class="animation flex">
+            <div class="balls" id="circleOne"></div>
+            <div class="balls" id="circleTwo"></div>
+            <div class="balls" id="circleThree"></div>
+        </div>}
         </div>
     )
 }

@@ -10,10 +10,7 @@ function Login({setLog, setWay, wayToLogin, setUserId, userUniqueId, setLogClick
     const password = useRef();
     const userId = useRef();
 
-    const {userIdContext,setIdForContxt} = useAppContext();
-
-
-     
+    const {userIdContext,setIdForContxt} = useAppContext();     
 
     async function sigUpHandler(event) {
         var usersName = name.current.value;
@@ -57,6 +54,7 @@ function Login({setLog, setWay, wayToLogin, setUserId, userUniqueId, setLogClick
                 try {
                     setUserId(usersUserId);
                     setIdForContxt(usersUserId);
+                    sessionStorage.setItem('userId',usersUserId);
 
                     console.log('atttempt to add account');
                     setLog(true);        
@@ -96,6 +94,7 @@ function Login({setLog, setWay, wayToLogin, setUserId, userUniqueId, setLogClick
                 setLog(true);
                 setUserId(usersUserId);
                 setIdForContxt(usersUserId);
+                sessionStorage.setItem('userId',usersUserId);
             }
             else{
                 setIdErr("Correct your username or password");

@@ -4,6 +4,8 @@ import SideBar from "./sideBar.jsx";
 import { useNavigate } from "react-router-dom";
 
 function Header({setUserId, userUniqueId, loginBtn={loginBtn}, backTo, obj}) {
+    console.log('userUniqueId : ',userUniqueId );
+    
     const [loggedIn, setLog] = useState(false);
     const [isLogCLicked, setLogClicked] = useState(false);
     const [wayToLogin, setWay] = useState(null);

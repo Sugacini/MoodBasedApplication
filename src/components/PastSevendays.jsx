@@ -3,35 +3,30 @@ import { Bar } from 'react-chartjs-2';
 import Header from "./Header";
 import { useAppContext } from "../ForContext";
 import { useEffect, useState } from "react";
-
-var userIdForStatic;
-
+import TodaysMood from "./TodaysMood";
 
   function PastSevenDays() {  
-    
+    var currentUserId = sessionStorage.getItem('userId');
     
     // const [count, setCount] = useState(0)
     const {userIdContext, currentEmotion} = useAppContext();
     console.log(currentEmotion);
-    
-    // console.log(userIdContext);
-    if (userIdContext) {
-      userIdForStatic= userIdContext;
-    }
-
+    var [emotionNow, setEmotion] = useState(null);
     var emotions = [ 'happy', 'neutral', 'sad', 'angry', 'disgust', 'surprised', 'fearful' ];
 
     var [dataFromDb,setData]=useState(null);
     var emotionWithTimes={};
     
     useEffect(()=>{
-      getTodaysLog(userIdContext).then((res=>setData(res)))
+      getTodaysLog(currentUserId);
+      getCurrentEmotion(currentUserId);
     },[])
     
-    console.log(dataFromDb);
     if (dataFromDb) {
+      console.log('emotionNow : ', emotionNow);
+      
       dataFromDb.map((val)=>{
-        if (emotionWithTimes[val[mood+data]]) {
+        if (emotionWithTimes[val.mood]) {
           
           emotionWithTimes[val.mood]+=1
         }
@@ -39,8 +34,6 @@ var userIdForStatic;
           emotionWithTimes[val.mood]=1
         }
       })
-  
-      console.log(emotionWithTimes);
     }
     
     
@@ -51,22 +44,18 @@ var userIdForStatic;
       plugins: {
         title: {
           display: true,
-          text: "Today's Emotions", 
+          text: "Last seven days", 
           color: 'black',
           align: 'center',
           padding:{
-            left:-500
+            bottom:50
+          },
+          font:{
+            size:23
           }
         },
         legend: {
-          position: 'right',
-          labels: {
-            color: 'black',
-            padding:30,
-            font:{
-              size:20
-            }
-          },
+          position: 'false',
         }
       },
       
@@ -74,13 +63,6 @@ var userIdForStatic;
 
     var values= [];
     emotions.forEach((val)=>values.push(emotionWithTimes[val]));
-    console.log(values);
-
-    console.log('neutral :   .........' ,emotionWithTimes.neutral);
-    console.log('happy :   .........' ,emotionWithTimes.happy);
-    
-    
-
     var data ={
       labels : emotions,//emotions txt
       datasets : [
@@ -94,16 +76,9 @@ var userIdForStatic;
     }
 
 
-    async function getTodaysLog(userIdContext) {
+    async function getTodaysLog(currentUserId) {
       try {
-        // let now = new Date();
-        // let dateAndTime = (now.toLocaleString()).split(",");
-        // let todaysDate = dateAndTime[0];
-        // console.log(dateAndTime,todaysDate);
-        // var dateFormated = todaysDate.slice(6)+"/"+todaysDate.slice(3,5)+"/"+todaysDate.slice(0,2);
-        // console.log(userIdContext, dateFormated);
-        
-        var response = await fetch('http://localhost:3000/lastSevenDays?userId='+userIdContext)// i need to send the userId with it
+        var response = await fetch('http://localhost:3000/lastSevenDays?userId='+currentUserId)// i need to send the userId with it
         var dataFromDb = await response.json();
         setData(dataFromDb)
         return dataFromDb;
@@ -114,18 +89,51 @@ var userIdForStatic;
       }
      }
 
+     async function getCurrentEmotion(currentUserId) {
+      try {
+        var response = await fetch('http://localhost:3000/currentEmotion?userId='+currentUserId)// i need to send the userId with it
+        var dbData = await response.json();
+        console.log('=>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
+        console.log(dbData);
+        
+        setEmotion(dbData[0].mood)
+        return dbData;
+      }
+      catch (error){
+        console.log(error);
+        
+      }
+     }
+
 
     return (
       <>
-        <Header userUniqueId={userIdContext} setUserId={null} loginBtn={null} backTo={'features'} obj={{state: {findEmo: currentEmotion, idOfUser: userIdContext}}}/>
-        <div className="chartPrnt">
+        <Header userUniqueId={currentUserId} setUserId={null} loginBtn={null} backTo={'features'} obj={{state: {findEmo: emotionNow, idOfUser: currentUserId}}}/>
+        <div className="statsCorner">
+          <div className="forCurrentEmotion">
+              <p className="textAlignCenter">Current Emotion</p>
+              <img src={emotionNow+".png"} alt={emotionNow} className="emojiInStats" />
+              {emotionNow? <p className="textAlignCenter">{emotionNow.toUpperCase()}</p>:null}
+              
+          </div>
+        
+          <div className="staticsContiner">
+            <div className="chartPrnt">
+              <div className='barChart forThisWeek'>
+                <Bar 
+                data={data}
+                options={options} 
+                height={500}
+                width={400}
+                ></Bar>
+                
+              </div>
+            </div>
+            <TodaysMood></TodaysMood>
+          </div>
 
-        <div className='barChart'>
-          <Bar 
-          data={data}
-          options={options} ></Bar>
         </div>
-        </div>
+        
       </>
       
     )

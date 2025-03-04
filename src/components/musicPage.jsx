@@ -89,8 +89,8 @@ function MusicPage() {
   <Header userUniqueId={userId} setUserId={null} loginBtn={null} backTo={'features'} obj={{state: {findEmo: finalEmo, idOfUser: userId}}}/>
 
 
-      <div className='wholeMusicPage'>
-        {selectedAlbumIdx==null?<div id='musicsLeft'>
+      <div className='wholeMusicPage' style={addElement?playFirst?{gap:'70px'}:{gap:'70px', marginLeft:'30px'}:null}>
+        {selectedAlbumIdx==null?<div id='musicsLeft' style={{background:'#0362d8'}}>
             <img src={emojiImg} alt="" className='emojiImage' />
           </div>
         : <div id='musicsLeft' className='leftOfMainMusic'>

@@ -7,7 +7,7 @@ const cors=require("cors");
 const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "suga@123",
+    password: "your_password1",
     database: "Emotions",
 });
 
@@ -18,7 +18,7 @@ var allEmotion={
     angry: [901722501, 789168950, 2721785, 516290971, 31211088, 81077086, 790274287, 80577755, 792884617],
     neutral: [810778, 1215078716, 897292996, 80802063, 83735561, 67691546, 799958976, 80203835, 838067360],
     disgusted: [154338787, 109118539, 1098155077, 83409616, 215424181, 792556286, 221835210, 837803163, 767974807],
-    fear: [4770633, 858957013, 79752572, 85233911, 793219647, 47119659, 696047329, 84621025, 79785694 ],
+    fearful: [4770633, 858957013, 79752572, 85233911, 793219647, 47119659, 696047329, 84621025, 79785694 ],
 }
 
 // var foodId = [52767, 52792, 52803, 52807, 52812, 52824, 52826, 52834, 52842, 52848, 52855, 52873, 52874, 52878, 52891, 52894, 52904, 52913, 52914, 52928, 52940, 52952, 52959, 52961, 52965, 52979, 52995, 52997, 53013, 53018, 53036, 53053, 53060, 53068, 53069, 53070, 53071, 53076, 53078, 53080]
@@ -75,7 +75,7 @@ app.post("/userIdCheck",(req,res)=>{
         console.log('yes');
         if(!err){
             res.status = 200;
-            console.log(result);
+            // console.log(result);
             
             console.log(result[0].total);
             
@@ -132,7 +132,7 @@ app.get("/addUser",(req,res)=>{
         
         if(!err){
             res.status = 200;
-            console.log(result);
+            // console.log(result);
             res.send(result);
         }
         else{
@@ -378,7 +378,7 @@ app.put("/userEntry",(req,res)=>{
                         console.log(error);
                     }
                     else{
-                        console.log(result);
+                        // console.log(result);
                         userNum = result[0].IdNumber;
                         connection.query("insert into UserLogs (userNumId, mood, date, time) values (?,?,?,?)", [userNum, mood, date, time], (error, results) => {
                             if(error){
@@ -461,6 +461,36 @@ app.get("/lastSevenDays",(req,res)=>{
     
     
 })// ]first time of usage, no table created
+
+app.get("/currentEmotion",(req,res)=>{
+    var {userId} = req.query
+    console.log(userId);
+
+    connection.query("select IdNumber from UnarvAIUsers where userId = ?", [userId], (err, result) => {
+        if (err) {
+          console.log(err); 
+        }
+        else{
+            var userNum = result[0].IdNumber;
+            console.log(userNum);
+            
+            connection.query('select * from UserLogs where UserNUmId = ? order by entryId desc limit 1',[userNum], (err,result) => {
+                console.log('yes');
+                if(!err){
+                    res.status = 200;
+                    // console.log(result);
+                                            
+                    res.send(result);
+                }
+                else{
+                    console.log("Throw error", err);
+                }
+            })
+        }
+    })
+    
+    
+})
 
 app.listen(3000, () => {
     console.log("Server Connected port 3000");

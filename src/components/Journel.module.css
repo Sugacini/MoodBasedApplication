@@ -100,7 +100,9 @@
 
 .journelContainer{
     /* width: 80%; */
-    height: auto;
+    height: 800px;
+    padding:'20px';
+    width:80%;
     /* border: 1px solid black; */
     position: relative;
     padding-left: 50px;
@@ -196,6 +198,7 @@
     transition: width .5s, height .5s;
     flex-direction: column;
     display: flex;
+    padding-top: 3%;
 
     align-items: center;
     justify-content: flex-start;

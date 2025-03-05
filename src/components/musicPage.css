@@ -1,6 +1,6 @@
 .wholeMusicPage{
     display: flex;
-    height: 1015px;
+    height: 93vh;
     /* align-items: center;
     padding-top: 40px; */
     gap: 260px;
@@ -124,6 +124,7 @@
 
 .pauseNPlayInMain{
     font-size: 50px;
+    cursor: pointer;
 }
 
 /* song box component */

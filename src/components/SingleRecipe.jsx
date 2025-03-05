@@ -100,7 +100,7 @@ function SingleRecipe() {
                     </div>
                     <div className="video">
                         <div className="otherFoods">
-                            <p className="otherFoodHead">Other Foods</p>
+                            <p className="otherFoodHead">Try these</p>
                             <div className="others">
                                 <Food2 data={data.emo1} iddata={userId}/>
                             </div>

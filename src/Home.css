@@ -91,6 +91,22 @@
     font-size: 3em;
 }
 
+.reDetect{
+    display: none;
+    position: absolute;
+    background-color: #0085E1;
+    height: 40px;
+    width: 100px;
+    border-radius: 10px;
+    top: 90%;
+    right: 58px;
+    color: white;
+    border: none;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 
 .outer{
     width: 100%;
@@ -130,7 +146,8 @@
 .quotesDiv2{
     width: 25%;
     height: 100%;
-    background-color: #006bc2;
+    background-color: #0085E1;
+    box-shadow: inset 4px 0px 10px #00000096;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -481,8 +498,8 @@
     width: 35%;
     height: 100%;
     background: fixed;
-    /* background-image: url("/food1.jpg"); */
-    background-color: #066db7;
+    background-color: #0085E1;
+    box-shadow: inset 4px 0px 10px #00000096;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     display: flex;
@@ -796,7 +813,8 @@
 
 .bookSideBar{
     width: 25%;
-    background-color: #066DB6;
+    background-color: #0085E1;
+    box-shadow: inset 4px 0px 10px #00000096;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -1081,11 +1099,12 @@
 .gameSideBar{
     width: 25%;
     height: 100%;
-    background-color: #006bc2;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #0085E1;
+    box-shadow: inset 4px 0px 10px #00000096;
 }
 
 .gameSideBar1{
@@ -1445,16 +1464,14 @@ ul{
   height: 700px;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   overflow-y: scroll;
-  /* padding: 5% 0 0 5%; */
 }
 
 .otherFoodHead{
   font-size: 2em;
   font-weight: bolder;
-  padding-bottom: 20%;
+  padding-bottom: 10%;
   padding-top: 5%;
 }
 
@@ -1595,6 +1612,19 @@ ul{
 
 .backBtn{
     font-size: 45px;
+    color: white;
+}
+
+.backBtnOuter{
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    border-radius: 50%;
+    top: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0085E1;
 }
 
 

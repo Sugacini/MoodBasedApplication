@@ -15,9 +15,10 @@ function Header({setUserId, userUniqueId, loginBtn={loginBtn}, backTo, obj}) {
     return (
         <div className="header">
             <div className="headersLeft">
-                {backTo?<FaLeftLong className="backBtn" onClick={()=>navigate("/"+backTo, obj)} style={{cursor:'pointer'}}/>: null}
+                {backTo?<div className="backBtnOuter" onClick={()=>navigate("/"+backTo, obj)} style={{cursor:'pointer', position: "absolute"}}><FaLeftLong className="backBtn" /></div>:null}
+                {/* {backTo?: null}</div> */}
                 {backTo?<img src="logo4.png" alt="" className="logo" onClick={()=>navigate("/", obj)} style={{cursor:'pointer'}}/>:<img src="logo4.png" alt="" className="logo" />}
-                <h3>UnarvAI</h3>
+                <h3>Unarv<span className="aiTxt">AI</span></h3>
             </div>
             
             {userUniqueId?<i className="fa-solid fa-circle-user icon" onClick={()=>setUIconClick(!userIconCliked)}></i>:

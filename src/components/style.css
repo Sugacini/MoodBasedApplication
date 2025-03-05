@@ -292,6 +292,7 @@ input::placeholder{
     border-radius: 15px;
     border-bottom-right-radius: 2px;
     max-width: 830px;
+    color: white;
 }
 
 .manMsgWithTime{
@@ -360,6 +361,10 @@ input::placeholder{
     align-items: center;
 } 
 /* header */
+
+.aiTxt{
+    color: #b41414;
+}
 
 
 .loginBox{

@@ -258,7 +258,8 @@
 .journelSideBar{
     width: 25%;
     height: 100%;
-    background-color: #006BC2;
+    background-color: #0085E1;
+    box-shadow: inset 4px 0px 10px #00000096;
     display: flex;
     flex-direction: column;
     justify-content: center;

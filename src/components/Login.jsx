@@ -118,7 +118,7 @@ function Login({setLog, setWay, wayToLogin, setUserId, userUniqueId, setLogClick
             <div className="inputParent">
                 {userIdErr?<p className="errMsg">{userIdErr}</p>:<p className="opac">.</p>}
                 <input className="inputBoxes" type="text" name="uerId" ref={userId} required autoComplete="off"/>
-                <label htmlFor="uerId" className="labels">User Id</label>
+                <label htmlFor="uerId" className="labels">User ID</label>
             </div>
             <div className="inputParent">
                 {passwordErr?<p className="errMsg">{passwordErr}</p>:<p className="opac">.</p>}
@@ -139,7 +139,7 @@ function Login({setLog, setWay, wayToLogin, setUserId, userUniqueId, setLogClick
                 <div className="inputParent">
                     {userIdErr?<p className="errMsg">{userIdErr}</p>:<p className="opac">.</p>}
                     <input className="inputBoxes" type="text" name="uerId" ref={userId} required autoComplete="off"/>
-                    <label htmlFor="uerId" className="labels">User Id</label>
+                    <label htmlFor="uerId" className="labels">User ID</label>
                 </div>
                 <div className="inputParent">
                     {passwordErr?<p className="errMsg">{passwordErr}</p>:<p className="opac">.</p>}

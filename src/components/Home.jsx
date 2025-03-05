@@ -13,6 +13,7 @@ function Home() {
     const navigate = useNavigate();
 
     const findEmotion = useRef();
+    const returnBtn = useRef();
     let detectFace = false;
 
     const location = useLocation();
@@ -27,6 +28,10 @@ function Home() {
     const [detectClicked, setDetectClicked] = useState(false);
     const [stream, setStream] = useState(null);
     let localStream;
+
+    function navigateHandler(){
+        navigate("/features", { state: { findEmo: (findEmotion.current), idOfUser: userData.idOfUser } });
+    }
 
     async function uploadFiles() {
         try {
@@ -174,7 +179,8 @@ function Home() {
             console.log(localStream.getTracks());
                 localStream.getTracks().forEach(track => track.stop());
                 if(detectFace){
-                    navigate("/features", { state: { findEmo: (findEmotion.current), idOfUser: userData.idOfUser } });
+                    returnBtn.current.style.display = "block";
+                    // return(<button onClick={navigateHandler}>Click here</button>)
                 }
                 else{
                     navigate("/notDetect", {state: { idOfUser: userId }}); 
@@ -196,6 +202,7 @@ function Home() {
                 <canvas ref={canvasDetect} className="createCanvas"></canvas>
                 <button onClick={detectHandler} className="detectBtn">Detect Mood</button>
                 <div className="detected" ref={detectMessage}></div>
+                <button onClick={navigateHandler} className="reDetect" ref={returnBtn}>Get In</button>
             </div>  
         </>
     )

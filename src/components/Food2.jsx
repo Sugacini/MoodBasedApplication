@@ -44,18 +44,12 @@ function Food2({ data, iddata }) {
                         <p className="newRecepieName">{isFood[index].meals[0].strMeal}</p>
                         <p className="newDescription">Area : {isFood[index].meals[0].strArea}<br />Category <b>: </b>{isFood[index].meals[0].strCategory}</p>
                         <button className="infoBt" key={index} ref={keyOfBtn} onClick={(e) => {
-                            // 
                             if(count == 0){
                                 navigate("/singleFood", { state: { idOfFood: isFood[index].meals[0].idMeal, emo1: data, idOfUser: iddata } });
                                 console.log(isFood[index].meals[0]);
                                 count++;
                                 window.location.reload();
                             }
-                            // else{
-                                
-                            //     navigate("/singleFood", { state: { idOfFood: isFood[index].meals[0].idMeal, emo1: data, idOfUser: iddata } });
-                            //     console.log(isFood[index].meals[0]);
-                            // }
                             
                         }}>More Info</button>
                     </div>

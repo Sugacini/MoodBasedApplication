@@ -363,7 +363,7 @@ input::placeholder{
 /* header */
 
 .aiTxt{
-    color: #b41414;
+    color: #f02d2d;
 }
 
 
@@ -679,3 +679,11 @@ input::placeholder{
     height: 600px;
     align-items: center;
 } */
+
+/* forAllBtns */
+
+.btnBg{
+    background: to right, #035ba3 0%, rgb(111, 193, 247) 51%, #035ba3 100%;
+    background-size: 200%;
+    transition: background .8s;
+}

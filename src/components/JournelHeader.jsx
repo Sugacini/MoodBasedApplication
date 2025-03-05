@@ -20,6 +20,9 @@ function JournelLogo() {
     const [selectedJournal, selectJournal] = useState(null);
 
     const [count, setCount] = useState(0);
+    
+    const [showNoJournel, setNoJournel] = useState(true);
+
 
     const location = useLocation();
     const result = location.state;
@@ -30,7 +33,7 @@ function JournelLogo() {
     var finalEmo = data1.slice(1, data1.length - 1);
 
     function createDiv() {
-        // JournalSelected.idx=null;//set journal selected to zero to make an empty display
+        setNoJournel(false);
         console.log(count);
         if (count == 0) {
             setJournalBoxes((prev) => [...prev, {}]);
@@ -40,6 +43,7 @@ function JournelLogo() {
     }
 
     async function saveData() {
+        setNoJournel(true);
         let value = writeText.current.value;
         let value1 = ((value.indexOf(" ") != -1) && (value.indexOf(" ") < 9)) ? value.slice(0, value.indexOf(" ")) : value.slice(0, 8);
         let now = new Date();
@@ -86,7 +90,7 @@ function JournelLogo() {
     }
 
     async function deleteData() {
-
+        setNoJournel(true);
 
         if (JournalSelected.idx != null) {
             await fetch("http://localhost:3000/deleteJournal?id=" + JournalSelected.idx);
@@ -112,11 +116,11 @@ function JournelLogo() {
     }
 
     function singleJournalClickHandler(e) {
+        setNoJournel(false);
 
         var clickedElement = e.target;
-        if (JournalSelected.idx != null) {
+        if (JournalSelected.idx != null || ((JournalSelected.idx == null) && count!=0 )) {
             newDiv.current.remove();
-
         }
         // if (JournalSelected.idx==null) {
         if (clickedElement.id) {
@@ -182,7 +186,7 @@ function JournelLogo() {
                 </div>
                 <div className={style.writeJournel}>
                     <div className={style.journelContainer} ref={createTextDiv} style={ count==0? {boxShadow:'0px 0px 10px rgba(0, 0, 0, 0.178)',alignItems:'center'}:null}>
-                        {newJournelDiv.length==0?<p>Start writing your journal now</p>:null}
+                        
                         {newJournelDiv.map((el, index) => (
 
                             <div key={index} className={style.journelBox} ref={newDiv}>
@@ -194,11 +198,12 @@ function JournelLogo() {
                                 </div>
                             </div>
                         ))}
+                        {showNoJournel?<p>Take a moment to reflect - what's on your mind today</p>:null}
                     </div>
                     <div className={style.saveJournel} ref={writingDataSave} style={{width:'25%'}}>
                         {newDataDiv.length!=0? <p style={{marginTop:'-39px'}}>My Journals :</p> :null}
                         {newDataDiv.length != 0 ? newDataDiv.map((ele, index) => {
-                            return <div className={style.dataSaveDiv} ref={saveText} key={index} id={ele.idx} onClick={singleJournalClickHandler} style={((JournalSelected.idx) == ele.idx) ? { background: '#0085e1' } : null}>
+                            return <div className={style.dataSaveDiv} ref={saveText} key={index} id={ele.idx} onClick={singleJournalClickHandler} style={((JournalSelected.idx) == ele.idx) ? { background: '#0085e1', color: 'white' } : null}>
                                 <p className={style.headOfJournel}>{ele.value1}</p>
                                 <div className={style.timeAndDate}>
                                     <p>{ele.date}</p>

@@ -44,6 +44,7 @@ function SingleBook() {
     return (
         <div className="singleBookOuter">
             <Header userUniqueId={userId} setUserId={null} loginBtn={null} backTo={'book'} obj={{state: {emo: data2, idOfUser: userId}}}/>
+            <div className="singleBookOuter2">
             {console.log(isBookDetails)}
             {(isBookDetails != null) ? 
             <div className="singleBookOuter1">
@@ -84,6 +85,7 @@ function SingleBook() {
             <div className="balls" id="circleTwo"></div>
             <div className="balls" id="circleThree"></div>
         </div>}
+        </div>
         </div>
     )
 }

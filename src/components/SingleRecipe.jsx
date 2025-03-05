@@ -53,6 +53,7 @@ function SingleRecipe() {
     return (
         <div className="foodOuter2">
             <Header userUniqueId={userId} setUserId={null} loginBtn={null} backTo={'food'} obj={{ state: { emo: data.emo1, idOfUser: userId } }} />
+            <div className="foodOuter3">
             {(isSingleFood != null) ?
                 <div className="foodOuter">
                     <div className="foodOuter1">
@@ -60,7 +61,7 @@ function SingleRecipe() {
                             {isSingleFood.meals[0].strMeal}</div>
                         <div className="aboutFood">
                             <div className="singleFoodIngrediants">
-                                <p className="singleFoodHeading">Ingrediants</p>
+                                <p className="singleFoodHeading">Ingredients</p>
                                 <ul>
                                     {ingreData.map((_, index) => {
                                         srcId = isSingleFood.meals[0].strYoutube;
@@ -116,6 +117,7 @@ function SingleRecipe() {
                 <div className="balls" id="circleTwo"></div>
                 <div className="balls" id="circleThree"></div>
             </div>}
+            </div>
         </div>
 
     )

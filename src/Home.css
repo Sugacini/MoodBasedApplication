@@ -929,12 +929,20 @@
 
 .singleBookOuter1
 {
-    width: 55%;
+    width: 100%;
     height: auto;
     box-shadow: 0 0 8px #b4b2b2b8;
     display: flex;
-    justify-content: center;
+    overflow: auto;
     flex-direction: column;
+}
+
+.singleBookOuter2
+{
+    width: 55%;
+    height: 93.5vh;
+    display: flex;
+    justify-content: center;
 }
 
 .booknameImg{
@@ -1286,10 +1294,18 @@
 
 .foodOuter{
     width: 100%;
-    height: 95%;
+    height: 100%;
     display: flex;
     justify-content: space-between;
 }
+
+.foodOuter3{
+    width: 100%;
+    height: 95%;
+    display: flex;
+    justify-content: center;
+}
+
 
 .foodOuter1{
     width: 75%;

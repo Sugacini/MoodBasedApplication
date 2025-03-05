@@ -4,20 +4,16 @@ import Header from "./Header";
 import { useAppContext } from "../ForContext";
 import { useEffect, useState } from "react";
 
-var userIdForStatic;
-
-
   function TodaysMood() {  
     
-    
+    var currentUserId=sessionStorage.getItem('userId');
     // const [count, setCount] = useState(0)
+    // currentUserId=sessionStorage.getItem('userId');
+
     const {userIdContext,currentEmotion} = useAppContext();
     console.log(currentEmotion);
     
     // console.log(userIdContext);
-    if (userIdContext) {
-      userIdForStatic= userIdContext;
-    }
 
     var emotions = [ 'happy', 'neutral', 'sad', 'angry', 'disgust', 'surprised', 'fearful' ];
 
@@ -25,8 +21,11 @@ var userIdForStatic;
     var emotionWithTimes={};
     
     useEffect(()=>{
-      getTodaysLog(userIdContext).then((res=>setData(res)))
+      getTodaysLog(currentUserId).then((res=>setData(res)))
     },[])
+
+    console.log('currentUserId : ',currentUserId);
+
     
     console.log(dataFromDb);
     if (dataFromDb) {
@@ -45,6 +44,7 @@ var userIdForStatic;
     
     
     
+    console.log('currentUserId : ',currentUserId);
 
     const options = {
       responsive: true,
@@ -56,6 +56,9 @@ var userIdForStatic;
           align: 'center',
           padding:{
             left:-500
+          },
+          font:{
+            size:23
           }
         },
         legend: {
@@ -94,16 +97,16 @@ var userIdForStatic;
     }
 
 
-    async function getTodaysLog(userIdContext) {
+    async function getTodaysLog(currentUserId) {
       try {
         let now = new Date();
         let dateAndTime = (now.toLocaleString()).split(",");
         let todaysDate = dateAndTime[0];
         console.log(dateAndTime,todaysDate);
         var dateFormated = todaysDate.slice(6)+"/"+todaysDate.slice(3,5)+"/"+todaysDate.slice(0,2);
-        console.log(userIdContext, dateFormated);
+        console.log(currentUserId, dateFormated);
         
-        var response = await fetch('http://localhost:3000/todaysLog?userId='+userIdContext+'&date='+dateFormated)// i need to send the userId with it
+        var response = await fetch('http://localhost:3000/todaysLog?userId='+currentUserId+'&date='+dateFormated)// i need to send the userId with it
         var dataFromDb = await response.json();
         setData(dataFromDb)
         return dataFromDb;
@@ -114,10 +117,11 @@ var userIdForStatic;
       }
      }
 
-
+     console.log('currentUserId : ',currentUserId);
+     
     return (
       <>
-        <Header userUniqueId={userIdContext} setUserId={null} loginBtn={null} backTo={'features'} obj={{state: {findEmo: currentEmotion, idOfUser: userIdContext}}}/>
+        {/* <Header userUniqueId={currentUserId} setUserId={null} loginBtn={null} backTo={'homePage'} obj={{state: {findEmo: currentEmotion, idOfUser: currentUserId}}}/> */}
         <div className="chartPrnt">
 
         <div className='barChart'>

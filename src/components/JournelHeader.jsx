@@ -153,7 +153,7 @@ function JournelLogo() {
             value: journal.content,
             idx: journal.journalId
         }))
-        setDataDiv(prevJournals)
+        setDataDiv(prevJournals);
 
 
     }

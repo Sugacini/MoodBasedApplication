@@ -8,7 +8,7 @@ let count = 0;
 
 function Home() {
 
-    const {userIdContext,setIdForContxt} = useAppContext();
+    // const {userIdContext,setIdForContxt} = useAppContext();
 
     const navigate = useNavigate();
 
@@ -139,7 +139,33 @@ function Home() {
                 findEmotion.current = allEmotions[indexVal];
                 console.log(allEmotions[indexVal], temp);
             }
-            setIdForContxt(findEmotion.current);
+            // setIdForContxt(findEmotion.current);
+            // userId
+            if (userId) {
+                async function entryToDb(){
+                    let now = new Date();
+                    let dateAndTime = (now.toLocaleString()).split(",");
+                    let date = dateAndTime[0];
+                    date = date.slice(6)+"/"+date.slice(3,5)+"/"+date.slice(0,2);
+                    let time = dateAndTime[1];
+            
+                    await fetch("http://localhost:3000/userEntry",{
+                        method:'PUT',
+                        headers:{
+                            "Content-type":"application/json"
+                        },
+                        body:JSON.stringify({
+                            userId:userId,
+                            date:date,
+                            time:time.trim(),
+                            mood:findEmotion.current
+                        })
+                    })
+                }
+                entryToDb();
+            }
+            
+
             detectMessage.current.textContent = allEmotions[indexVal].toUpperCase();
             detectFace = true;
         }, 2000)

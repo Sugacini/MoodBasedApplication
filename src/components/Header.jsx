@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { FaLeftLong } from "react-icons/fa6";
 
 function Header({setUserId, userUniqueId, loginBtn={loginBtn}, backTo, obj}) {
+    console.log('userUniqueId : ',userUniqueId );
+    
     const [loggedIn, setLog] = useState(false);
     const [isLogCLicked, setLogClicked] = useState(false);
     const [wayToLogin, setWay] = useState(null);

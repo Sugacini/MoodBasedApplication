@@ -25,6 +25,7 @@ function Features() {
     const data1 = (JSON.stringify(data.findEmo));
     const finalEmo = data1.slice(1, data1.length - 1);
     const finalEmo1 = finalEmo.toUpperCase();
+    var canAddToDb=sessionStorage.getItem('userId');
     // console.log(JSON.stringify(data.findEmo), finalEmo);
 
     const loginBtn = useRef();
@@ -41,7 +42,7 @@ function Features() {
     // }
 
     async function firstClickOfFeature(){
-        if (userUniqueId!=null && firstFeatureNotClicked) {
+        if (userUniqueId!=null && firstFeatureNotClicked && !canAddToDb) {
             firstFeatureNotClicked=false;
             let now = new Date();
             let dateAndTime = (now.toLocaleString()).split(",");

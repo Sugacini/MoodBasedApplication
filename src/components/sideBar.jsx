@@ -4,13 +4,17 @@ function SideBar() {
     const navigate = useNavigate();
     return (
         <div className="sideBar">
-            <p onClick={() => {navigate("/todaysMood")}}>Today's mood</p>
+            <div className="triangle"></div>
+            {/* <p onClick={() => {navigate("/todaysMood")}}>Today's mood</p> */}
 
-            <p onClick={() => {navigate("/pastSevendays")}}>This week</p>
+            <p onClick={() => {navigate("/pastSevendays")}}>Statistics</p>
 
             {/* <p>Change userId</p> */}
 
-            <p className="logoutBtn" onClick={() => {navigate("/")}}>Log out</p>
+            <p className="logoutBtn" onClick={() => {
+                sessionStorage.clear();
+                navigate("/");
+                }}>Log out</p>
         </div>
     )
     

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Login from './Login.jsx'
 import SideBar from "./sideBar.jsx";
 import { useNavigate } from "react-router-dom";
+import { FaLeftLong } from "react-icons/fa6";
 
 function Header({setUserId, userUniqueId, loginBtn={loginBtn}, backTo, obj}) {
     const [loggedIn, setLog] = useState(false);
@@ -12,7 +13,8 @@ function Header({setUserId, userUniqueId, loginBtn={loginBtn}, backTo, obj}) {
     return (
         <div className="header">
             <div className="headersLeft">
-            {backTo?<img src="logo4.png" alt="" className="logo" onClick={()=>navigate("/"+backTo, obj)} style={{cursor:'pointer'}}/>:<img src="logo4.png" alt="" className="logo" />}
+                {backTo?<FaLeftLong className="backBtn" onClick={()=>navigate("/"+backTo, obj)} style={{cursor:'pointer'}}/>: <FaLeftLong className="logo"/>}
+                {backTo?<img src="logo4.png" alt="" className="logo" onClick={()=>navigate("/", obj)} style={{cursor:'pointer'}}/>:<img src="logo4.png" alt="" className="logo" />}
                 <h3>UnarvAI</h3>
             </div>
             {/* {backTo?<div className="headersLeft" onClick={()=>navigate("/"+backTo, obj)} style={{cursor:'pointer'}}>

@@ -13,8 +13,9 @@ let count = 0;
 function Quotes(){
 
     const navigate = useNavigate();
-    const[quotes, setQuotes] = useState("");
+    const[isQuotes, setQuotes] = useState("");
     const[author, setAuthor] = useState("");
+    const[randomQuotes, setRandomQuotes] = useState(null);
 
     const location = useLocation();
     const data = location.state;
@@ -27,17 +28,35 @@ function Quotes(){
 
     async function nextQuoHandler(){
         try{
-            let response = await fetch("https://api.paperquotes.com/apiv1/quotes/?tags=happy");
+            let response = await fetch("https://api.paperquotes.com/apiv1/quotes/?tags="+finalEmo);
+            let result = await fetch("https://dummyjson.com/quotes");
+            let result1 = result.json();
+            let result2 = await result1.then();
+            let result3 = result2.quotes;
+            setRandomQuotes(result3);
+            console.log(result3);
             if(!response.ok){
                 throw new Error("error")
             }
             let value = response.json();
             let value1 = await value.then();
             let finalValue = value1.results;
-            let final = finalValue[Math.floor(Math.random() * (finalValue.length))];
-            setQuotes(final.quote)
-            setAuthor(final.author);
-            console.log(finalValue);
+            if(finalValue.length > 0){
+                let final = finalValue[Math.floor(Math.random() * (finalValue.length))];
+                console.log(final.quote);
+                setQuotes(final.quote)
+                setAuthor(final.author);
+                console.log(finalValue);
+            }
+            else{
+                let newResponse = await fetch('https://dummyjson.com/quotes/1');
+                let newResponse1 = newResponse.json();
+                let newResponse2 = await newResponse1.then();
+                console.log(newResponse2);
+                setQuotes(newResponse2.quote);
+                setAuthor(newResponse2.author);
+            }
+            
         }
         catch(err){
             console.log(err);
@@ -55,17 +74,26 @@ function Quotes(){
             {console.log(finalEmo)}
             <div className="quotesDiv2">
                 <img src={finalEmo+".png"} className="emojiImage"></img>
-                <p className="quotesQuo">" {quotes} "</p>
+                {(isQuotes != "") ? <p className="quotesQuo">" {isQuotes} "</p> : null}
             </div>
                 <div className="quotesDiv1">
-                        <div className="sto1" onClick={() => {
-                            localStorage.setItem("emoData", JSON.stringify(finalEmo));
-                            navigate("/story", {state: {emo: finalEmo, idOfUser: userId}})
-                        }}>
-                            <FaBookOpen className="iconSize"></FaBookOpen>
-                    </div>
+                       
                     <div className="innerOuter">
-                        <div className="hexagonOuter">
+                        <ol className="hexagonOuter"><span>Other Quotes</span>
+                            {(randomQuotes != null) ? randomQuotes.map((randomQuote, index) => {
+                                return(<li className="random">{randomQuote.quote}</li>)
+                            }):null}
+                        </ol>
+                        <div className="iconsDiv">
+                            <div className="sto1" onClick={() => {
+                                localStorage.setItem("emoData", JSON.stringify(finalEmo));
+                                navigate("/story", {state: {emo: finalEmo, idOfUser: userId}})
+                            }}>
+                                <FaBookOpen className="iconSize"></FaBookOpen>
+                            </div>
+                            <button className="nextQuoBtn" onClick={nextQuoHandler}>NEXT</button>
+                        </div>
+                        {/* <div className="hexagonOuter">
                             <div className="hexagon">
                                 <div className="quotesHeading">QUOTES</div>
                                     <div className="quotes1">
@@ -79,8 +107,8 @@ function Quotes(){
                                     </div>
                                     {author?<p className="authorOfQuo">-{author}</p>:<p className="authorOfQuo"></p>}
                             </div>
-                        </div>
-                        <button className="nextQuoBtn" onClick={nextQuoHandler}>NEXT</button>
+                        </div> */}
+                        
                     </div>
                 
                 
@@ -92,6 +120,34 @@ function Quotes(){
 }
 
 export default Quotes;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -133,6 +189,7 @@ export default Quotes;
 //     const navigate = useNavigate();
 //     const[quotes, setQuotes] = useState("");
 //     const[author, setAuthor] = useState("");
+//     const[randomQuotes, setRandomQuotes] = useState([]);
 
 //     const location = useLocation();
 //     const data = location.state;
@@ -145,17 +202,32 @@ export default Quotes;
 
 //     async function nextQuoHandler(){
 //         try{
-//             let response = await fetch("https://api.paperquotes.com/apiv1/quotes/?tags=happy");
+//             let response = await fetch("https://api.paperquotes.com/apiv1/quotes/?tags="+finalEmo);
+//             let result = await fetch("https://dummyjson.com/quotes");
+//             let result1 = result.json();
+//             let result2 = await result1.then();
+//             let result3 = result2.quotes;
+//             setRandomQuotes(result3);
+//             console.log(result3);
 //             if(!response.ok){
 //                 throw new Error("error")
 //             }
 //             let value = response.json();
 //             let value1 = await value.then();
 //             let finalValue = value1.results;
-//             let final = finalValue[Math.floor(Math.random() * (finalValue.length))];
-//             setQuotes(final.quote)
-//             setAuthor(final.author);
-//             console.log(finalValue);
+//             if(finalValue.length > 0){
+//                 let final = finalValue[Math.floor(Math.random() * (finalValue.length))];
+//                 setQuotes(final.quote)
+//                 setAuthor(final.author);
+//                 console.log(finalValue);
+//             }
+//             else{
+//                 let newResponse = await fetch("https://api.api-ninjas.com/v1/quotes");
+//                 let newResponse1 = newResponse.json();
+//                 let newResponse2 = await newResponse1.then();
+//                 console.log(newResponse2);
+//             }
+            
 //         }
 //         catch(err){
 //             console.log(err);
@@ -171,34 +243,33 @@ export default Quotes;
 //             <Header userUniqueId={userId} setUserId={null} loginBtn={null} backTo={"features"} obj={{state: {findEmo: finalEmo, idOfUser: userId}}}/>
 //             <div className="quotesDiv">
 //             {console.log(finalEmo)}
+//             <div className="quotesDiv2">
+//                 <img src={finalEmo+".png"} className="emojiImage"></img>
+//                 <p className="quotesQuo">" {quotes} "</p>
+//             </div>
 //                 <div className="quotesDiv1">
-//                     <div className="naviHead" >
 //                         <div className="sto1" onClick={() => {
 //                             localStorage.setItem("emoData", JSON.stringify(finalEmo));
 //                             navigate("/story", {state: {emo: finalEmo, idOfUser: userId}})
 //                         }}>
 //                             <FaBookOpen className="iconSize"></FaBookOpen>
-//                         </div>
 //                     </div>
 //                     <div className="innerOuter">
-//                         <div className="hexagonOuter">
+//                         {/* <div className="hexagonOuter">
 //                             <div className="hexagon">
 //                                 <div className="quotesHeading">QUOTES</div>
 //                                     <div className="quotes1">
     
-//                                         <div className="setQuo1">
-//                                             <FaQuoteLeft className="quoIcon" />
-//                                         </div>
-    
 //                                         <p className="setQuo">
-//                                             {quotes}
-//                                         <FaQuoteRight  className="quoIcon1"/>
+//                                             <FaQuoteLeft className="quoIcon" />
+//                                                 {quotes}
+//                                             <FaQuoteRight  className="quoIcon1"/>
 //                                         </p>
                             
 //                                     </div>
 //                                     {author?<p className="authorOfQuo">-{author}</p>:<p className="authorOfQuo"></p>}
 //                             </div>
-//                         </div>
+//                         </div> */}
 //                         <button className="nextQuoBtn" onClick={nextQuoHandler}>NEXT</button>
 //                     </div>
                 
@@ -211,4 +282,27 @@ export default Quotes;
 // }
 
 // export default Quotes;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

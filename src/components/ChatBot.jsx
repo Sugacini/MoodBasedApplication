@@ -77,7 +77,7 @@ return (
          <Header userUniqueId={userId} setUserId={null} loginBtn={null} backTo={"features"} obj={{state: {findEmo: finalEmo, idOfUser: userId}}}/>
 
              <div className='chatHeader'>
-                 <FaArrowLeft className='back' onClick={(e) =>navigate("/features",{ state: { findEmo: (finalEmo) , idOfUser: userId} })}/>
+                 {/* <FaArrowLeft className='back' onClick={(e) =>navigate("/features",{ state: { findEmo: (finalEmo) , idOfUser: userId} })}/> */}
                  <p>Emotional Partner</p>
              </div>
              <ChatSpace messages={messages}></ChatSpace>

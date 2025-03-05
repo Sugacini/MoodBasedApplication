@@ -53,12 +53,12 @@ function Book() {
             <div className="bookContainer1">
                 {/* <div className="bookQuotesHead">{quote[(Math.floor(Math.random() * 3))]}</div> */}
             <div className="bookContainer">
+                {console.log(isBook)}
                 {(isBook != null) ? isBook.map((singleBook, index) => {
-                    {console.log(singleBook.volumeInfo.imageLinks.thumbnail)}
-                    return <div key={index} className="book" onClick={() => {navigate("/singleBook", {state: { bookId: singleBook.id, emo:data1, idOfUser: userId }})}}>
-                        <img src={singleBook.volumeInfo.imageLinks.thumbnail} className="setBookImg"></img>
-                        <p className="bookName">{singleBook.volumeInfo.title}</p>
-                    </div>
+                    return ((singleBook.volumeInfo.imageLinks)? <div key={index} className="book" onClick={() => {navigate("/singleBook", {state: { bookId: singleBook.id, emo:data1, idOfUser: userId }})}}>
+                    <img src={singleBook.volumeInfo.imageLinks.thumbnail} className="setBookImg"></img>
+                    <p className="bookName">{singleBook.volumeInfo.title}</p>
+                </div> : null)
                 }) :  <div className="animation flex">
                 <div className="balls" id="circleOne"></div>
                 <div className="balls" id="circleTwo"></div>

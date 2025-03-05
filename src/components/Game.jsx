@@ -12,7 +12,7 @@ function Game() {
         sad: ["https://scratch.mit.edu/projects/1044459433/fullscreen/", "https://scratch.mit.edu/projects/1044417104/fullscreen/", "https://scratch.mit.edu/projects/1041092581/fullscreen/"],
         angry: ["https://scratch.mit.edu/projects/1040953446/fullscreen/", "https://scratch.mit.edu/projects/1041113111/fullscreen/", "https://scratch.mit.edu/projects/1044819398/fullscreen/"],
         disgusted : ["https://scratch.mit.edu/projects/1044493610/fullscreen/", "https://scratch.mit.edu/projects/1040855612/fullscreen/", "https://scratch.mit.edu/projects/1041097324/fullscreen/"],
-        fear : ["https://scratch.mit.edu/projects/1039054027/fullscreen/", "https://scratch.mit.edu/projects/1041085798/fullscreen/", "https://scratch.mit.edu/projects/1040246369/fullscreen/"],
+        fearful : ["https://scratch.mit.edu/projects/1039054027/fullscreen/", "https://scratch.mit.edu/projects/1041085798/fullscreen/", "https://scratch.mit.edu/projects/1040246369/fullscreen/"],
         neutral : ["https://scratch.mit.edu/projects/1043780740/fullscreen/", "https://scratch.mit.edu/projects/1044459433/fullscreen/", "https://scratch.mit.edu/projects/1041113111/fullscreen/"],
         surprised: ["https://scratch.mit.edu/projects/1040953446/fullscreen/", "https://scratch.mit.edu/projects/1044798295/fullscreen/", "https://scratch.mit.edu/projects/1040246369/fullscreen/"],
     }
@@ -21,7 +21,7 @@ function Game() {
         sad: ['"123 Game" is a simple yet engaging number-based puzzle or reflex game that tests quick thinking and pattern recognition. Fun and easy to play!', "Dice Mania is a fun and addictive dice-rolling game that combines luck and strategy. Roll the dice, score points, and challenge yourself or friends!", "Typing Master is an educational game designed to improve typing speed and accuracy through fun exercises and challenges. Perfect for learning fast typing!"],
         angry: ["Memory Game is a classic brain-training game where players match pairs of cards by remembering their positions. It enhances concentration.", "Connecting Dots is a simple yet addictive puzzle game where players link dots of the same color to complete patterns. It boosts logic and problem-solving skills!", "A Jumbled Word Game is a fun and challenging puzzle where players unscramble mixed-up letters to form correct words."],
         disgusted: ["Pac-Man is a classic arcade game where you navigate a maze, eat pellets, and avoid ghosts. Collect power-ups to chase the ghosts and score big!", "Mars War is a multiplayer shooter set on Mars, featuring intense battles and sci-fi action.", "Quiz is a question-and-answer game that tests knowledge on various topics. Fun for learning and challenges!"],
-        fear: ["4 Pics 1 Word is a puzzle game where players guess a common word linking four images. Simple, fun, and great for brain training!", "Correct Word is a word puzzle game where players form or fix words from given letters. It improves vocabulary and spelling skills!", "Super Mario is a classic platformer where Mario jumps through levels, defeats enemies, and rescues Princess Peach. Fun, adventure-packed, and iconic!"],
+        fearful: ["4 Pics 1 Word is a puzzle game where players guess a common word linking four images. Simple, fun, and great for brain training!", "Correct Word is a word puzzle game where players form or fix words from given letters. It improves vocabulary and spelling skills!", "Super Mario is a classic platformer where Mario jumps through levels, defeats enemies, and rescues Princess Peach. Fun, adventure-packed, and iconic!"],
         neutral: ["Plants vs. Zombies is a fun strategy game where players use plants to defend their garden from waves of zombies. Addictive, challenging, and entertaining!", '"123 Game" is a simple yet engaging number-based puzzle or reflex game that tests quick thinking and pattern recognition. Fun and easy to play!', "Connecting Dots is a simple yet addictive puzzle game where players link dots of the same color to complete patterns. It boosts logic and problem-solving skills!"],
         surprised: ["Memory Game is a classic brain-training game where players match pairs of cards by remembering their positions. It enhances concentration.", "Flappy Bird is a simple yet challenging arcade game where players navigate a bird through gaps between pipes by tapping the screen to keep it flying.", "Super Mario is a classic platformer where Mario jumps through levels, defeats enemies, and rescues Princess Peach. Fun, adventure-packed, and iconic!"],
 };
@@ -30,7 +30,7 @@ function Game() {
         sad: ["123.png", "diceMania.jpg", "typing.png"],
         angry: ["memory.jpg", "connects.jpg", "jumbled.jpg"],
         disgusted: ["pacman.jpg", "marswar.jpg", "quiz.jpg"],
-        fear: ["oneWord.png", "correct.jpeg", "superMario.jpg"],
+        fearful: ["oneWord.png", "correct.jpeg", "superMario.jpg"],
         neutral: ["plants.jpg", "123.png", "connects.jpg"],
         surprised: ["memory.jpg", "flappy.jpg", "superMario.jpg"]
     }

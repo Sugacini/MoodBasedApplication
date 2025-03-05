@@ -48,7 +48,7 @@ function Book() {
             
             <div className="bookSideBar">
                 <img src={data1+".png"} className="emojiImage1"></img>
-                <div>{quote[(Math.floor(Math.random() * 3))]}</div>
+                <div className="bookQuote">{quote[(Math.floor(Math.random() * 3))]}</div>
             </div>
             <div className="bookContainer1">
                 {/* <div className="bookQuotesHead">{quote[(Math.floor(Math.random() * 3))]}</div> */}

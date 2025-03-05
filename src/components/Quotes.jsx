@@ -29,7 +29,7 @@ function Quotes(){
     async function nextQuoHandler(){
         try{
             let response = await fetch("https://api.paperquotes.com/apiv1/quotes/?tags="+finalEmo);
-            let result = await fetch("https://dummyjson.com/quotes");
+            let result = await fetch("https://dummyjson.com/quotes?limit=10&skip=20");
             let result1 = result.json();
             let result2 = await result1.then();
             let result3 = result2.quotes;
@@ -79,9 +79,9 @@ function Quotes(){
                 <div className="quotesDiv1">
                        
                     <div className="innerOuter">
-                        <ol className="hexagonOuter"><span>Other Quotes</span>
+                        <ol className="hexagonOuter"><span className="quoHead">Quotes</span>
                             {(randomQuotes != null) ? randomQuotes.map((randomQuote, index) => {
-                                return(<li className="random">{randomQuote.quote}</li>)
+                                return(<li className="random">" {randomQuote.quote} "</li>)
                             }):null}
                         </ol>
                         <div className="iconsDiv">
@@ -91,7 +91,7 @@ function Quotes(){
                             }}>
                                 <FaBookOpen className="iconSize"></FaBookOpen>
                             </div>
-                            <button className="nextQuoBtn" onClick={nextQuoHandler}>NEXT</button>
+                            {/* <button className="nextQuoBtn" onClick={nextQuoHandler}>NEXT</button> */}
                         </div>
                         {/* <div className="hexagonOuter">
                             <div className="hexagon">

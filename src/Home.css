@@ -10,7 +10,7 @@
 
 .homeOuter{
     width: 60%;
-    height: 907px;
+    height: 1026px;
     margin: auto;
     display: flex;
     justify-content: space-between;
@@ -219,7 +219,7 @@
     cursor: pointer;
 }
 
-span{
+.quoHead{
     font-weight: bolder;
     font-size: 40px;
 }
@@ -841,6 +841,10 @@ span{
     font-weight: bolder;
     text-align: center;
     padding: 3%;
+}
+
+.bookQuote{
+    text-align: center;
 }
 
 .bookContainer1{

@@ -15,20 +15,10 @@ function Header({setUserId, userUniqueId, loginBtn={loginBtn}, backTo, obj}) {
     return (
         <div className="header">
             <div className="headersLeft">
-                {backTo?<FaLeftLong className="backBtn" onClick={()=>navigate("/"+backTo, obj)} style={{cursor:'pointer'}}/>: <FaLeftLong className="logo"/>}
+                {backTo?<FaLeftLong className="backBtn" onClick={()=>navigate("/"+backTo, obj)} style={{cursor:'pointer'}}/>: null}
                 {backTo?<img src="logo4.png" alt="" className="logo" onClick={()=>navigate("/", obj)} style={{cursor:'pointer'}}/>:<img src="logo4.png" alt="" className="logo" />}
                 <h3>UnarvAI</h3>
             </div>
-            {/* {backTo?<div className="headersLeft" onClick={()=>navigate("/"+backTo, obj)} style={{cursor:'pointer'}}>
-                <img src="logo4.png" alt="" className="logo" />
-                <h3>UnarvAI</h3>
-            </div>:<div className="headersLeft">
-                <img src="logo4.png" alt="" className="logo" />
-                <h3>UnarvAI</h3>
-            </div>} */}
-            
-
-            {/* <i NamclassName="fa-solid fa-circle-user icon" onClick={()=>setUIconClick(!userIconCliked)}></i> */}
             
             {userUniqueId?<i className="fa-solid fa-circle-user icon" onClick={()=>setUIconClick(!userIconCliked)}></i>:
             isLogCLicked ? loggedIn ?

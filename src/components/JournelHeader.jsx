@@ -178,7 +178,7 @@ function JournelLogo() {
             <div className={style.journalOuter}>
                 <div className={style.journelSideBar}>
                     <img src={finalEmo+".png"} className={style.emojiImage2}></img>
-                    <p className={style.journelQuote}>Music is the soundtrack of your best moments</p>
+                    <p className={style.journelQuote}>"Music is the soundtrack of your best moments"</p>
                 </div>
                 <div className={style.writeJournel}>
                     <div className={style.journelContainer} ref={createTextDiv} style={(count == 0) ? { width: '0%' } : { width: '80%' }}>

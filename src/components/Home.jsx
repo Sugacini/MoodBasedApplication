@@ -4,11 +4,10 @@ import * as faceapi from "face-api.js";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Header from "./Header";
 import { useAppContext } from "../ForContext";
+import { FaArrowRight } from "react-icons/fa6";
 let count = 0;
 
 function Home() {
-
-    // const {userIdContext,setIdForContxt} = useAppContext();
 
     const navigate = useNavigate();
 
@@ -77,6 +76,7 @@ function Home() {
 
 
     function detectHandler() {
+        returnBtn.current.style.display = "none";
         console.log("Enter it detecthandler")
         let liveVideo = srcVal.current;
         let count = 0;
@@ -179,7 +179,7 @@ function Home() {
             console.log(localStream.getTracks());
                 localStream.getTracks().forEach(track => track.stop());
                 if(detectFace){
-                    returnBtn.current.style.display = "block";
+                    returnBtn.current.style.display = "flex";
                     // return(<button onClick={navigateHandler}>Click here</button>)
                 }
                 else{
@@ -202,7 +202,11 @@ function Home() {
                 <canvas ref={canvasDetect} className="createCanvas"></canvas>
                 <button onClick={detectHandler} className="detectBtn">Detect Mood</button>
                 <div className="detected" ref={detectMessage}></div>
-                <button onClick={navigateHandler} className="reDetect" ref={returnBtn}>Get In</button>
+                <div className="navigateDiv" ref={returnBtn} style={{display: "none"}}>
+                    <p className="detectWord" onClick={navigateHandler}>It's time to explore<FaArrowRight /></p>
+                    {/* <button onClick={navigateHandler} className="reDetect">Get In</button> */}
+                </div>
+                
             </div>  
         </>
     )

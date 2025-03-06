@@ -171,6 +171,7 @@
     border: none;
     border-radius:13px ;
     color: white;
+    cursor: pointer;
 }
 
 .trash{
@@ -179,6 +180,7 @@
     border: none;
     color: white;
     border-radius:13px ;
+    cursor: pointer;
 }
 
 .writeJournel{
@@ -220,6 +222,7 @@
     height: 130px;
     /* margin-top: 5%; */
     border-radius: 10px;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -251,7 +254,7 @@
 
 .journalOuter{
     width: 100%;
-    height: 93.5vh;
+    height: 93vh;
     display: flex;
 }
 

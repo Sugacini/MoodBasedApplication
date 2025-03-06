@@ -662,7 +662,7 @@ input::placeholder{
     width: fit-content;
     box-shadow: 0px 0px 15px rgba(46, 46, 46, 0.267);
     border-radius: 15px;
-    padding: 20px 0px;
+    padding: 5px 0px;
     font-size: 20px;
 
 }

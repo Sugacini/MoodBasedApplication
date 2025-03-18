@@ -7,7 +7,7 @@ const cors=require("cors");
 const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "your_password1",
+    password: "suga@123",
     database: "Emotions",
 });
 
@@ -36,7 +36,7 @@ app.use(express.static(pubDir));
 
 
 app.use(cors({
-    origin: "http://localhost:5173", 
+    origin: "http://localhost:5175", 
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true, 
 }));
